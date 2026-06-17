@@ -8,12 +8,13 @@
     
     /* Larger album cover on tablet */
     .album-cover-container {
-        max-width: 280px;
+        max-width: 260px;
     }
     
     /* Adjust padding */
     .player-section {
-        padding: var(--spacing-2xl) var(--spacing-xl);
+        padding: var(--spacing-xl) var(--spacing-2xl);
+        gap: var(--spacing-xl);
     }
     
     .playlist-section {
@@ -29,6 +30,15 @@
         font-size: var(--font-size-lg);
     }
     
+    .brand-name {
+        font-size: var(--font-size-xl);
+    }
+
+    /* Better control spacing */
+    .controls {
+        gap: var(--spacing-xl);
+    }
+    
 }
 
 /* ========== DESKTOP (1024px and up) ========== */
@@ -36,7 +46,8 @@
     
     /* Side-by-side layout */
     .music-player {
-        grid-template-columns: 500px 1fr;
+        grid-template-columns: var(--player-width) 1fr;
+        min-height: 700px;
     }
     
     /* Full-size album cover */
@@ -46,21 +57,26 @@
     
     /* Adjust playlist height */
     .playlist-section {
-        max-height: 700px;
+        max-height: 100%;
+        min-height: 700px;
     }
     
     /* Better spacing for controls */
     .controls {
-        gap: var(--spacing-lg);
+        gap: var(--spacing-xl);
+    }
+
+    .player-section {
+        gap: var(--spacing-xl);
     }
     
 }
 
-/* ========== LARGE DESKTOP (1440px and up) ========== */
-@media screen and (min-width: 1440px) {
+/* ========== LARGE DESKTOP (1200px and up) ========== */
+@media screen and (min-width: 1200px) {
     
     .music-player {
-        grid-template-columns: 550px 1fr;
+        grid-template-columns: 500px 1fr;
     }
     
     .player-section {
@@ -69,7 +85,23 @@
     
     .playlist-section {
         padding: var(--spacing-2xl) var(--spacing-xl);
-        max-height: 800px;
+    }
+
+    .album-cover-container {
+        max-width: 300px;
+    }
+    
+}
+
+/* ========== EXTRA LARGE DESKTOP (1440px and up) ========== */
+@media screen and (min-width: 1440px) {
+    
+    .music-player {
+        grid-template-columns: 550px 1fr;
+    }
+
+    .album-cover-container {
+        max-width: 320px;
     }
     
 }
@@ -82,7 +114,8 @@
     }
     
     .player-section {
-        padding: var(--spacing-xl) var(--spacing-md);
+        padding: var(--spacing-lg) var(--spacing-md);
+        gap: var(--spacing-md);
     }
     
     .playlist-section {
@@ -102,28 +135,36 @@
     .song-artist {
         font-size: var(--font-size-sm);
     }
+
+    .brand-name {
+        font-size: var(--font-size-md);
+    }
     
     /* Smaller controls */
     .control-btn {
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
     }
     
     .play-btn {
-        width: 56px;
-        height: 56px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .controls {
+        gap: var(--spacing-md);
     }
     
     /* Adjust playlist items for small screens */
     .playlist-item {
-        grid-template-columns: 25px 45px 1fr 50px;
+        grid-template-columns: 28px 48px 1fr 55px;
         gap: var(--spacing-sm);
         padding: var(--spacing-sm);
     }
     
     .playlist-item-cover {
-        width: 45px;
-        height: 45px;
+        width: 48px;
+        height: 48px;
     }
     
     .playlist-item-title {
@@ -132,6 +173,10 @@
     
     .playlist-item-artist {
         font-size: var(--font-size-xs);
+    }
+
+    .playlist-item-number {
+        font-size: var(--font-size-sm);
     }
     
 }
@@ -144,16 +189,32 @@
     }
     
     .player-section {
-        padding: var(--spacing-lg);
-        gap: var(--spacing-md);
+        padding: var(--spacing-md);
+        gap: var(--spacing-sm);
     }
     
     .album-cover-container {
-        max-width: 150px;
+        max-width: 140px;
     }
     
     .playlist-section {
-        max-height: 400px;
+        max-height: 100%;
+    }
+
+    .brand-header {
+        margin-bottom: 0;
+    }
+
+    .song-info {
+        margin-bottom: 0;
+    }
+
+    .controls {
+        margin: var(--spacing-sm) 0;
+    }
+
+    .progress-container {
+        margin: var(--spacing-sm) 0;
     }
     
 }
@@ -189,12 +250,12 @@
 /* ========== HIGH CONTRAST MODE ========== */
 @media (prefers-contrast: high) {
     :root {
-        --color-border: #ffffff;
+        --color-border: #404040;
         --color-text-secondary: #e0e0e0;
     }
     
     .control-btn,
     .playlist-item {
-        border: 1px solid var(--color-border);
+        border: 2px solid var(--color-border);
     }
 }
