@@ -1,8 +1,8 @@
 /* ================================
-   ANIMATIONS & TRANSITIONS
+   ANIMATIONS & TRANSITIONS - ENHANCED
    ================================ */
 
-/* Rotating Album Animation */
+/* Rotating Album Animation - Enhanced Control */
 @keyframes rotate {
     from {
         transform: rotate(0deg);
@@ -12,12 +12,25 @@
     }
 }
 
+/* Playing state - smooth rotation */
 .rotating-album.playing {
     animation: rotate 20s linear infinite;
 }
 
+/* Paused state - maintain position */
 .rotating-album.paused {
     animation-play-state: paused;
+}
+
+/* Stop rotation completely when not playing */
+.rotating-album:not(.playing) {
+    animation: none;
+}
+
+/* Smooth song info transitions */
+.song-title,
+.song-artist {
+    transition: opacity 0.3s ease-in-out, color var(--transition-normal);
 }
 
 /* Fade In Animation */
@@ -48,16 +61,6 @@
     }
 }
 
-/* Pulse Animation for Active Song */
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.6;
-    }
-}
-
 /* Shimmer Loading Animation */
 @keyframes shimmer {
     0% {
@@ -79,20 +82,7 @@
     animation: shimmer 2s infinite;
 }
 
-/* Scale Bounce Animation */
-@keyframes scaleBounce {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Glow Pulse Animation */
+/* Glow Pulse Animation - Enhanced */
 @keyframes glowPulse {
     0%, 100% {
         box-shadow: var(--shadow-md), 0 0 0 0 var(--color-primary-glow);
@@ -102,11 +92,12 @@
     }
 }
 
-.play-btn.playing {
+.play-btn.playing,
+.playing .play-btn {
     animation: glowPulse 2s ease-in-out infinite;
 }
 
-/* Slide In Animation for Playlist Items */
+/* Slide In Animation for Playlist Items - Staggered */
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -123,25 +114,75 @@
     animation-fill-mode: both;
 }
 
+/* Stagger animation delays */
 .playlist-item:nth-child(1) { animation-delay: 0.05s; }
 .playlist-item:nth-child(2) { animation-delay: 0.1s; }
 .playlist-item:nth-child(3) { animation-delay: 0.15s; }
 .playlist-item:nth-child(4) { animation-delay: 0.2s; }
 .playlist-item:nth-child(5) { animation-delay: 0.25s; }
+.playlist-item:nth-child(6) { animation-delay: 0.3s; }
+.playlist-item:nth-child(n+7) { animation-delay: 0.35s; }
 
-/* Ripple Effect (for future use) */
-@keyframes ripple {
+/* Smooth button press animation */
+@keyframes buttonPress {
     0% {
-        transform: scale(0);
-        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
     }
     100% {
-        transform: scale(4);
-        opacity: 0;
+        transform: scale(1);
     }
 }
 
-/* Smooth transitions for all interactive elements */
+/* Active button feedback */
+.control-btn:active {
+    animation: buttonPress 0.2s ease;
+}
+
+/* Progress fill smooth animation */
+.progress-filled,
+.volume-filled {
+    transition: width 0.1s linear;
+}
+
+/* Smooth scale for handles */
+.progress-handle,
+.volume-handle {
+    transition: transform var(--transition-normal) var(--ease-smooth);
+}
+
+/* Ripple effect on active items */
+@keyframes ripple {
+    0% {
+        box-shadow: 0 0 0 0 var(--color-primary-glow);
+    }
+    100% {
+        box-shadow: 0 0 0 20px rgba(29, 185, 84, 0);
+    }
+}
+
+.playlist-item.active {
+    animation: ripple 1s ease-out;
+}
+
+/* Smooth state transitions */
 * {
     transition-timing-function: var(--ease-smooth);
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .rotating-album {
+        animation: none !important;
+    }
 }
