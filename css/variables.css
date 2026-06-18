@@ -1,286 +1,88 @@
 /* ================================
    CSS CUSTOM PROPERTIES (VARIABLES)
-   PREMIUM REDESIGN
    ================================ */
 
 :root {
-    /* ========================================
-       PREMIUM GRADIENT COLOR SYSTEM
-       ======================================== */
+    /* Color Palette - Spotify Inspired Dark Theme */
+    --color-primary: #1db954;           /* Spotify green */
+    --color-primary-dark: #1aa34a;      /* Darker green for hover */
+    --color-primary-light: #1ed760;     /* Lighter green for accents */
+    --color-primary-glow: rgba(29, 185, 84, 0.3);
     
-    /* Primary Gradients - Purple to Pink to Orange */
-    --gradient-primary: linear-gradient(135deg, #8B5CF6 0%, #EC4899 50%, #F59E0B 100%);
-    --gradient-primary-vertical: linear-gradient(180deg, #8B5CF6 0%, #EC4899 100%);
-    --gradient-secondary: linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%);
-    --gradient-accent: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    --color-bg-main: #121212;           /* Main background */
+    --color-bg-elevated: #181818;       /* Card background */
+    --color-bg-raised: #282828;         /* Hover states */
+    --color-bg-press: #1a1a1a;          /* Active/pressed states */
+    --color-bg-overlay: rgba(0, 0, 0, 0.7);
     
-    /* Radial Gradients for Glows */
-    --gradient-glow-purple: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%);
-    --gradient-glow-pink: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, transparent 70%);
-    --gradient-glow-blue: radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, transparent 70%);
+    --color-text-primary: #ffffff;      /* Primary text */
+    --color-text-secondary: #b3b3b3;    /* Secondary text */
+    --color-text-muted: #6a6a6a;        /* Muted text */
+    --color-text-disabled: #4a4a4a;     /* Disabled text */
     
-    /* Background Gradient System */
-    --bg-gradient-main: linear-gradient(135deg, #0A0A0F 0%, #1A0B2E 50%, #0A0E27 100%);
-    --bg-gradient-card: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+    --color-border: #2a2a2a;            /* Border color - enhanced visibility */
+    --color-border-hover: #404040;      /* Border hover */
+    --color-border-focus: #535353;      /* Border focus */
     
-    /* ========================================
-       SOLID COLORS
-       ======================================== */
+    /* Brand Colors */
+    --color-brand-gradient-start: #1db954;
+    --color-brand-gradient-end: #1ed760;
     
-    /* Primary Colors */
-    --color-primary-purple: #8B5CF6;
-    --color-primary-pink: #EC4899;
-    --color-primary-orange: #F59E0B;
-    --color-primary-cyan: #06B6D4;
-    --color-primary-blue: #3B82F6;
+    /* Spacing System */
+    --spacing-xs: 0.25rem;   /* 4px */
+    --spacing-sm: 0.5rem;    /* 8px */
+    --spacing-md: 1rem;      /* 16px */
+    --spacing-lg: 1.5rem;    /* 24px */
+    --spacing-xl: 2rem;      /* 32px */
+    --spacing-2xl: 3rem;     /* 48px */
     
-    /* Background Colors */
-    --color-bg-main: #0A0A0F;              /* Deep dark base */
-    --color-bg-elevated: #12121A;          /* Slightly elevated */
-    --color-bg-card: #1A1A2E;              /* Card background */
-    --color-bg-hover: #252538;             /* Hover state */
-    --color-bg-press: #1A1A2E;             /* Active/pressed state */
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    --font-size-xs: 0.75rem;    /* 12px */
+    --font-size-sm: 0.875rem;   /* 14px */
+    --font-size-md: 1rem;       /* 16px */
+    --font-size-lg: 1.125rem;   /* 18px */
+    --font-size-xl: 1.5rem;     /* 24px */
+    --font-size-2xl: 2rem;      /* 32px */
     
-    /* Glassmorphism Colors */
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-bg-hover: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-border-hover: rgba(255, 255, 255, 0.2);
-    --glass-highlight: rgba(255, 255, 255, 0.15);
-    
-    /* Text Colors */
-    --color-text-primary: #FFFFFF;         /* Pure white */
-    --color-text-secondary: #B4B4C8;       /* Light purple-gray */
-    --color-text-muted: #6B6B8C;           /* Muted purple-gray */
-    --color-text-disabled: #4A4A5E;        /* Very muted */
-    
-    /* Border Colors */
-    --color-border: rgba(255, 255, 255, 0.08);
-    --color-border-hover: rgba(255, 255, 255, 0.15);
-    --color-border-focus: rgba(139, 92, 246, 0.5);
-    
-    /* ========================================
-       GLOW & SHADOW COLORS
-       ======================================== */
-    
-    --glow-primary: rgba(139, 92, 246, 0.6);
-    --glow-secondary: rgba(236, 72, 153, 0.6);
-    --glow-accent: rgba(6, 182, 212, 0.5);
-    --glow-soft: rgba(139, 92, 246, 0.2);
-    
-    /* ========================================
-       SPACING SYSTEM
-       ======================================== */
-    
-    --spacing-xs: 0.25rem;      /* 4px */
-    --spacing-sm: 0.5rem;       /* 8px */
-    --spacing-md: 1rem;         /* 16px */
-    --spacing-lg: 1.5rem;       /* 24px */
-    --spacing-xl: 2rem;         /* 32px */
-    --spacing-2xl: 3rem;        /* 48px */
-    --spacing-3xl: 4rem;        /* 64px */
-    
-    /* ========================================
-       TYPOGRAPHY
-       ======================================== */
-    
-    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
-    
-    /* Font Sizes */
-    --font-size-xs: 0.75rem;       /* 12px */
-    --font-size-sm: 0.875rem;      /* 14px */
-    --font-size-md: 1rem;          /* 16px */
-    --font-size-lg: 1.125rem;      /* 18px */
-    --font-size-xl: 1.5rem;        /* 24px */
-    --font-size-2xl: 2rem;         /* 32px */
-    --font-size-3xl: 2.5rem;       /* 40px */
-    --font-size-4xl: 3rem;         /* 48px */
-    
-    /* Font Weights */
     --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
-    --font-weight-black: 900;
     
-    /* Line Heights */
-    --line-height-tight: 1.2;
-    --line-height-normal: 1.5;
-    --line-height-relaxed: 1.75;
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 50%;
     
-    /* Letter Spacing */
-    --letter-spacing-tight: -0.02em;
-    --letter-spacing-normal: 0;
-    --letter-spacing-wide: 0.05em;
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px var(--color-primary-glow);
     
-    /* ========================================
-       BORDER RADIUS
-       ======================================== */
+    /* Transitions */
+    --transition-fast: 0.15s ease-in-out;
+    --transition-normal: 0.3s ease-in-out;
+    --transition-slow: 0.5s ease-in-out;
     
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-xl: 20px;
-    --radius-2xl: 24px;
-    --radius-full: 9999px;
-    
-    /* ========================================
-       SHADOWS & DEPTH
-       ======================================== */
-    
-    /* Elevation Shadows */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
-    --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
-    --shadow-2xl: 0 24px 64px rgba(0, 0, 0, 0.7);
-    
-    /* Glow Shadows */
-    --shadow-glow-sm: 0 0 20px var(--glow-soft);
-    --shadow-glow-md: 0 0 40px var(--glow-primary);
-    --shadow-glow-lg: 0 0 60px var(--glow-primary);
-    
-    /* Multi-layer Depth */
-    --shadow-depth: 
-        0 2px 4px rgba(0, 0, 0, 0.2),
-        0 8px 16px rgba(0, 0, 0, 0.3),
-        0 16px 32px rgba(0, 0, 0, 0.4);
-    
-    /* Glass Shadow */
-    --shadow-glass: 
-        0 8px 32px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    
-    /* ========================================
-       BLUR & EFFECTS
-       ======================================== */
-    
-    --blur-sm: 10px;
-    --blur-md: 20px;
-    --blur-lg: 40px;
-    --blur-xl: 60px;
-    
-    /* Backdrop Filter */
-    --backdrop-blur-sm: blur(10px);
-    --backdrop-blur-md: blur(20px);
-    --backdrop-blur-lg: blur(40px);
-    
-    /* ========================================
-       TRANSITIONS & ANIMATIONS
-       ======================================== */
-    
-    /* Timing Functions */
+    /* Easing Functions */
     --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-    --ease-in: cubic-bezier(0.4, 0, 1, 1);
-    --ease-out: cubic-bezier(0, 0, 0.2, 1);
-    --ease-in-out: cubic-bezier(0.4, 0, 0.6, 1);
     --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     
-    /* Durations */
-    --duration-fast: 0.15s;
-    --duration-normal: 0.3s;
-    --duration-slow: 0.5s;
-    --duration-slower: 0.7s;
-    
-    /* Combined Transitions */
-    --transition-fast: var(--duration-fast) var(--ease-smooth);
-    --transition-normal: var(--duration-normal) var(--ease-smooth);
-    --transition-slow: var(--duration-slow) var(--ease-smooth);
-    --transition-all: all var(--duration-normal) var(--ease-smooth);
-    
-    /* ========================================
-       Z-INDEX LAYERS
-       ======================================== */
-    
-    --z-background: -1;
+    /* Z-index layers */
     --z-base: 1;
     --z-dropdown: 10;
     --z-sticky: 100;
     --z-overlay: 1000;
     --z-modal: 10000;
     
-    /* ========================================
-       LAYOUT SIZES
-       ======================================== */
-    
+    /* Layout */
     --max-width: 1400px;
-    --player-card-width: 90%;
-    --player-card-max-width: 1200px;
-    
-    /* Album Sizes */
-    --album-size-hero: 320px;
-    --album-size-desktop: 280px;
-    --album-size-tablet: 240px;
+    --player-width: 450px;
+    --album-size: 280px;
     --album-size-mobile: 200px;
-    
-    /* Playlist Item Height */
-    --playlist-item-height: 72px;
-    
-    /* ========================================
-       GLASS EFFECT PRESETS
-       ======================================== */
-    
-    /* Glass Card */
-    --glass-card-bg: var(--glass-bg);
-    --glass-card-border: 1px solid var(--glass-border);
-    --glass-card-shadow: var(--shadow-glass);
-    --glass-card-backdrop: var(--backdrop-blur-md);
-    
-    /* Glass Hover */
-    --glass-hover-bg: var(--glass-bg-hover);
-    --glass-hover-border: 1px solid var(--glass-border-hover);
-    
-    /* ========================================
-       PREMIUM EFFECTS
-       ======================================== */
-    
-    /* Floating Animation Values */
-    --float-distance: 10px;
-    --float-duration: 6s;
-    
-    /* Pulse Values */
-    --pulse-scale-min: 0.95;
-    --pulse-scale-max: 1.05;
-    --pulse-duration: 2s;
-    
-    /* Shimmer Values */
-    --shimmer-color-start: rgba(255, 255, 255, 0);
-    --shimmer-color-mid: rgba(255, 255, 255, 0.1);
-    --shimmer-color-end: rgba(255, 255, 255, 0);
-}
-
-/* ========================================
-   DARK MODE ADJUSTMENTS (Future-proof)
-   ======================================== */
-
-@media (prefers-color-scheme: light) {
-    :root {
-        --color-bg-main: #0A0A0F;
-    }
-}
-
-/* ========================================
-   HIGH CONTRAST MODE
-   ======================================== */
-
-@media (prefers-contrast: high) {
-    :root {
-        --glass-border: rgba(255, 255, 255, 0.3);
-        --color-text-secondary: #E0E0E0;
-        --color-border: rgba(255, 255, 255, 0.2);
-    }
-}
-
-/* ========================================
-   REDUCED MOTION
-   ======================================== */
-
-@media (prefers-reduced-motion: reduce) {
-    :root {
-        --duration-fast: 0.01ms;
-        --duration-normal: 0.01ms;
-        --duration-slow: 0.01ms;
-        --float-duration: 0.01ms;
-        --pulse-duration: 0.01ms;
-    }
 }
