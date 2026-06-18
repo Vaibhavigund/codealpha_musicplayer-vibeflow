@@ -12,44 +12,44 @@
 
 const playlist = [
     {
-        title: "Midnight Dreams",
-        artist: "Luna Rivers",
-        cover: "assets/images/placeholder-album.jpg",
+        title: "Tum Ho Toh",
+        artist: "Jubin Nautiyal",
+        cover: "assets/images/cover1.jpg",
         audio: "assets/music/song1.mp3",
         duration: "3:45"
     },
     {
-        title: "Electric Pulse",
-        artist: "Neon Waves",
-        cover: "assets/images/placeholder-album.jpg",
+        title: "Bairan",
+        artist: "Arijit Singh",
+        cover: "assets/images/cover2.jpg",
         audio: "assets/music/song2.mp3",
         duration: "4:12"
     },
     {
-        title: "Sunset Boulevard",
-        artist: "The Horizons",
-        cover: "assets/images/placeholder-album.jpg",
+        title: "Sajni",
+        artist: "Arijit Singh",
+        cover: "assets/images/cover3.jpg",
         audio: "assets/music/song3.mp3",
         duration: "3:28"
     },
     {
-        title: "Crystal Skies",
-        artist: "Aurora Bay",
-        cover: "assets/images/placeholder-album.jpg",
+        title: "Sanam",
+        artist: "Shreya Ghoshal",
+        cover: "assets/images/cover4.jpg",
         audio: "assets/music/song4.mp3",
         duration: "5:03"
     },
     {
-        title: "Urban Lights",
-        artist: "Metro Sound",
-        cover: "assets/images/placeholder-album.jpg",
+        title: "Sahiba",
+        artist: "Aditya Rikhari",
+        cover: "assets/images/cover5.jpg",
         audio: "assets/music/song5.mp3",
         duration: "3:56"
     },
     {
         title: "Ocean Breeze",
         artist: "Coastal Vibes",
-        cover: "assets/images/placeholder-album.jpg",
+        cover: "assets/images/cover6.jpg",
         audio: "assets/music/song6.mp3",
         duration: "4:31"
     }
