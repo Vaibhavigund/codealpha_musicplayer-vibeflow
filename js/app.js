@@ -1,19 +1,10 @@
 // ================================
 // VIBEFLOW MUSIC PLAYER
-// Main Application - Enhanced
+// Final Optimized Version
 // ================================
 
 /**
- * Repeat Mode Enum
- */
-const RepeatMode = {
-    OFF: 'off',
-    ALL: 'all',
-    ONE: 'one'
-};
-
-/**
- * Main Music Player Class - Enhanced
+ * Main Music Player Class
  * Handles all player functionality and state management
  */
 class MusicPlayer {
@@ -26,9 +17,9 @@ class MusicPlayer {
             currentIndex: 0,
             isPlaying: false,
             isSeeking: false,
+            isLoading: false,
             volume: loadFromStorage('vibeflow-volume', 0.7),
             previousVolume: 0.7,
-            // NEW: Advanced features state
             isShuffled: loadFromStorage('vibeflow-shuffle', false),
             repeatMode: loadFromStorage('vibeflow-repeat', RepeatMode.OFF),
             shuffleHistory: [],
@@ -84,6 +75,12 @@ class MusicPlayer {
     init() {
         console.log('🎵 VibeFlow Music Player Initializing...');
         
+        // Validate playlist
+        if (!playlist || playlist.length === 0) {
+            this.showEmptyPlaylistState();
+            return;
+        }
+        
         // Set initial volume
         this.audio.volume = this.state.volume;
         this.updateVolumeUI();
@@ -111,6 +108,26 @@ class MusicPlayer {
     }
     
     /**
+     * Show empty playlist state
+     */
+    showEmptyPlaylistState() {
+        this.playlistContainer.innerHTML = `
+            <div style="text-align: center; padding: 3rem 1rem; color: var(--color-text-muted);">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity: 0.3; margin: 0 auto 1.5rem;">
+                    <path d="M9 18V5l12-2v13"/>
+                    <circle cx="6" cy="18" r="3"/>
+                    <circle cx="18" cy="16" r="3"/>
+                </svg>
+                <p style="font-size: 1.25rem; margin-bottom: 0.5rem; font-weight: 600;">No Music Found</p>
+                <p style="font-size: 0.875rem;">Add songs to your playlist to get started</p>
+            </div>
+        `;
+        this.playBtn.disabled = true;
+        this.nextBtn.disabled = true;
+        this.prevBtn.disabled = true;
+    }
+    
+    /**
      * Attach all event listeners
      */
     attachEventListeners() {
@@ -119,7 +136,7 @@ class MusicPlayer {
         this.prevBtn.addEventListener('click', () => this.prevSong());
         this.nextBtn.addEventListener('click', () => this.nextSong());
         
-        // NEW: Advanced controls
+        // Advanced controls
         this.shuffleBtn.addEventListener('click', () => this.toggleShuffle());
         this.repeatBtn.addEventListener('click', () => this.cycleRepeatMode());
         
@@ -130,10 +147,18 @@ class MusicPlayer {
         this.audio.addEventListener('play', () => this.onPlay());
         this.audio.addEventListener('pause', () => this.onPause());
         this.audio.addEventListener('error', (e) => this.onAudioError(e));
+        this.audio.addEventListener('waiting', () => this.onBuffering());
+        this.audio.addEventListener('canplay', () => this.onCanPlay());
         
         // Progress bar seeking
         this.progressBar.addEventListener('click', (e) => this.seekByClick(e));
         this.progressHandle.addEventListener('mousedown', (e) => this.startSeek(e));
+        
+        // Touch support for progress bar
+        this.progressBar.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            this.seekByClick({clientX: touch.clientX});
+        });
         
         // Volume control
         this.volumeBtn.addEventListener('click', () => this.toggleMute());
@@ -146,8 +171,16 @@ class MusicPlayer {
         // Search functionality
         this.searchInput.addEventListener('input', debounce((e) => this.onSearch(e), 300));
         
-        // NEW: Enhanced keyboard shortcuts
+        // Keyboard shortcuts
         document.addEventListener('keydown', (e) => this.onKeyPress(e));
+        
+        // Visibility change (pause when tab hidden)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && this.state.isPlaying) {
+                // Optionally pause when tab is hidden
+                // this.pauseSong();
+            }
+        });
     }
     
     /**
@@ -157,12 +190,11 @@ class MusicPlayer {
         this.playlistContainer.innerHTML = '';
         
         if (playlistToRender.length === 0) {
-            this.showNoResults();
+            this.showNoSearchResults();
             return;
         }
         
         playlistToRender.forEach((song, displayIndex) => {
-            // Find original index for proper tracking
             const originalIndex = playlist.findIndex(s => 
                 s.title === song.title && s.artist === song.artist
             );
@@ -175,16 +207,16 @@ class MusicPlayer {
     }
     
     /**
-     * Show no results message
+     * Show no search results message
      */
-    showNoResults() {
+    showNoSearchResults() {
         this.playlistContainer.innerHTML = `
             <div style="text-align: center; padding: 3rem 1rem; color: var(--color-text-muted);">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.3; margin-bottom: 1rem;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.3; margin: 0 auto 1rem;">
                     <circle cx="11" cy="11" r="8"/>
                     <path d="m21 21-4.35-4.35"/>
                 </svg>
-                <p style="font-size: 1.125rem; margin-bottom: 0.5rem;">No songs found</p>
+                <p style="font-size: 1.125rem; margin-bottom: 0.5rem; font-weight: 600;">No songs found</p>
                 <p style="font-size: 0.875rem;">Try a different search term</p>
             </div>
         `;
@@ -199,12 +231,15 @@ class MusicPlayer {
         item.className = 'playlist-item';
         item.dataset.index = originalIndex;
         item.tabIndex = 0;
+        item.setAttribute('role', 'button');
+        item.setAttribute('aria-label', `Play ${song.title} by ${song.artist}`);
         
         item.innerHTML = `
             <div class="playlist-item-number">${displayIndex + 1}</div>
             <div class="playlist-item-cover">
                 <img src="${song.cover}" alt="${song.title} cover" 
-                     onerror="this.style.display='none'; this.parentElement.classList.add('no-image')">
+                     onerror="this.style.display='none'; this.parentElement.classList.add('no-image')"
+                     loading="lazy">
                 <div class="cover-placeholder">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
@@ -212,13 +247,30 @@ class MusicPlayer {
                 </div>
             </div>
             <div class="playlist-item-info">
-                <div class="playlist-item-title">${song.title}</div>
-                <div class="playlist-item-artist">${song.artist}</div>
+                <div class="playlist-item-title">${this.sanitizeHTML(song.title)}</div>
+                <div class="playlist-item-artist">${this.sanitizeHTML(song.artist)}</div>
             </div>
             <div class="playlist-item-duration">${song.duration}</div>
         `;
         
+        // Keyboard support
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                item.click();
+            }
+        });
+        
         return item;
+    }
+    
+    /**
+     * Sanitize HTML to prevent XSS
+     */
+    sanitizeHTML(str) {
+        const temp = document.createElement('div');
+        temp.textContent = str;
+        return temp.innerHTML;
     }
     
     /**
@@ -232,7 +284,6 @@ class MusicPlayer {
      * Load a song by index
      */
     loadSong(index) {
-        // Validate index
         if (index < 0 || index >= playlist.length) {
             console.error('Invalid song index:', index);
             return;
@@ -242,6 +293,7 @@ class MusicPlayer {
         
         // Update state
         this.state.currentIndex = index;
+        this.state.isLoading = true;
         
         // Add to shuffle history
         if (this.state.isShuffled) {
@@ -263,7 +315,7 @@ class MusicPlayer {
      * Update song information display
      */
     updateSongInfo(song) {
-        // Update text with fade effect
+        // Fade out
         this.songTitle.style.opacity = '0';
         this.songArtist.style.opacity = '0';
         
@@ -290,6 +342,9 @@ class MusicPlayer {
             this.albumCover.style.display = 'none';
             this.albumPlaceholder.style.display = 'flex';
         };
+        
+        // Update document title
+        document.title = `${song.title} - VibeFlow`;
     }
     
     /**
@@ -313,16 +368,17 @@ class MusicPlayer {
             playPromise
                 .then(() => {
                     this.state.isPlaying = true;
+                    this.state.isLoading = false;
                     this.updatePlayPauseUI();
-                    // Start album rotation
-                    this.albumCoverContainer.classList.remove('paused');
                     this.albumCoverContainer.classList.add('playing');
                     console.log('▶️ Playing');
                 })
                 .catch((error) => {
                     console.error('Playback failed:', error);
+                    this.state.isLoading = false;
                     if (error.name === 'NotAllowedError') {
                         console.warn('Autoplay blocked. User interaction required.');
+                        this.showNotification('Click play to start music');
                     }
                 });
         }
@@ -335,14 +391,12 @@ class MusicPlayer {
         this.audio.pause();
         this.state.isPlaying = false;
         this.updatePlayPauseUI();
-        // Stop album rotation
         this.albumCoverContainer.classList.remove('playing');
-        this.albumCoverContainer.classList.add('paused');
         console.log('⏸️ Paused');
     }
     
     /**
-     * Play next song (with shuffle support)
+     * Play next song
      */
     nextSong() {
         let nextIndex;
@@ -351,8 +405,6 @@ class MusicPlayer {
             nextIndex = this.getRandomSongIndex();
         } else {
             nextIndex = this.state.currentIndex + 1;
-            
-            // Loop back to start if at end and repeat all is on
             if (nextIndex >= playlist.length) {
                 nextIndex = 0;
             }
@@ -360,9 +412,8 @@ class MusicPlayer {
         
         this.loadSong(nextIndex);
         
-        // Continue playing if currently playing
         if (this.state.isPlaying) {
-            this.playSong();
+            setTimeout(() => this.playSong(), 100);
         }
     }
     
@@ -370,7 +421,6 @@ class MusicPlayer {
      * Play previous song
      */
     prevSong() {
-        // If song has played more than 3 seconds, restart it
         if (this.audio.currentTime > 3) {
             this.audio.currentTime = 0;
             return;
@@ -379,12 +429,9 @@ class MusicPlayer {
         let prevIndex;
         
         if (this.state.isShuffled) {
-            // Get from shuffle history or random
             prevIndex = this.getPreviousShuffledSong();
         } else {
             prevIndex = this.state.currentIndex - 1;
-            
-            // Loop to end if at start
             if (prevIndex < 0) {
                 prevIndex = playlist.length - 1;
             }
@@ -392,38 +439,33 @@ class MusicPlayer {
         
         this.loadSong(prevIndex);
         
-        // Continue playing if currently playing
         if (this.state.isPlaying) {
-            this.playSong();
+            setTimeout(() => this.playSong(), 100);
         }
     }
     
     /**
-     * Handle song ended event (with repeat mode support)
+     * Handle song ended event
      */
     onSongEnded() {
         console.log('🏁 Song ended');
         
         switch (this.state.repeatMode) {
             case RepeatMode.ONE:
-                // Replay current song
                 this.audio.currentTime = 0;
                 this.playSong();
                 console.log('🔂 Repeating current song');
                 break;
                 
             case RepeatMode.ALL:
-                // Play next song (will loop at end)
                 this.nextSong();
                 break;
                 
             case RepeatMode.OFF:
             default:
-                // Play next if not at end
                 if (this.state.currentIndex < playlist.length - 1 || this.state.isShuffled) {
                     this.nextSong();
                 } else {
-                    // Stop at end
                     this.pauseSong();
                     this.audio.currentTime = 0;
                     console.log('✋ Playlist ended');
@@ -432,13 +474,34 @@ class MusicPlayer {
         }
     }
     
+    /**
+     * Handle buffering state
+     */
+    onBuffering() {
+        this.state.isLoading = true;
+        console.log('⏳ Buffering...');
+    }
+    
+    /**
+     * Handle can play state
+     */
+    onCanPlay() {
+        this.state.isLoading = false;
+        console.log('✅ Ready to play');
+    }
+    
+    /**
+     * Show notification (optional enhancement)
+     */
+    showNotification(message) {
+        console.log('💬 ' + message);
+        // Could add toast notification UI here
+    }
+    
     // ================================
     // SHUFFLE MODE
     // ================================
     
-    /**
-     * Toggle shuffle mode
-     */
     toggleShuffle() {
         this.state.isShuffled = !this.state.isShuffled;
         
@@ -455,18 +518,13 @@ class MusicPlayer {
         saveToStorage('vibeflow-shuffle', this.state.isShuffled);
     }
     
-    /**
-     * Get random song index (excluding recent plays)
-     */
     getRandomSongIndex() {
         const playlistSize = playlist.length;
         
-        // If we've played most songs, reset history
         if (this.state.shuffleHistory.length >= playlistSize - 1) {
             this.state.shuffleHistory = [this.state.currentIndex];
         }
         
-        // Get available songs
         const availableIndices = [];
         for (let i = 0; i < playlistSize; i++) {
             if (!this.state.shuffleHistory.includes(i)) {
@@ -474,38 +532,27 @@ class MusicPlayer {
             }
         }
         
-        // Pick random from available
         if (availableIndices.length > 0) {
             const randomIdx = Math.floor(Math.random() * availableIndices.length);
             return availableIndices[randomIdx];
         }
         
-        // Fallback
         return (this.state.currentIndex + 1) % playlistSize;
     }
     
-    /**
-     * Add song to shuffle history
-     */
     addToShuffleHistory(index) {
         if (!this.state.shuffleHistory.includes(index)) {
             this.state.shuffleHistory.push(index);
         }
         
-        // Keep history manageable
         if (this.state.shuffleHistory.length > playlist.length) {
             this.state.shuffleHistory.shift();
         }
     }
     
-    /**
-     * Get previous shuffled song
-     */
     getPreviousShuffledSong() {
         if (this.state.shuffleHistory.length > 1) {
-            // Remove current
             this.state.shuffleHistory.pop();
-            // Get previous
             return this.state.shuffleHistory[this.state.shuffleHistory.length - 1];
         }
         return this.getRandomSongIndex();
@@ -515,9 +562,6 @@ class MusicPlayer {
     // REPEAT MODE
     // ================================
     
-    /**
-     * Cycle through repeat modes: OFF → ALL → ONE → OFF
-     */
     cycleRepeatMode() {
         switch (this.state.repeatMode) {
             case RepeatMode.OFF:
@@ -538,14 +582,9 @@ class MusicPlayer {
         saveToStorage('vibeflow-repeat', this.state.repeatMode);
     }
     
-    /**
-     * Update repeat button UI
-     */
     updateRepeatUI() {
-        // Remove all states
         this.repeatBtn.classList.remove('active', 'repeat-one');
         
-        // Add appropriate state
         switch (this.state.repeatMode) {
             case RepeatMode.ALL:
                 this.repeatBtn.classList.add('active');
@@ -566,27 +605,21 @@ class MusicPlayer {
     // SEARCH FUNCTIONALITY
     // ================================
     
-    /**
-     * Enhanced search with real-time filtering
-     */
     onSearch(e) {
         const query = e.target.value.toLowerCase().trim();
         
         if (query === '') {
-            // Show all songs
             this.state.filteredPlaylist = [...playlist];
             this.renderPlaylist();
             return;
         }
         
-        // Filter playlist
         this.state.filteredPlaylist = playlist.filter(song => {
             const titleMatch = song.title.toLowerCase().includes(query);
             const artistMatch = song.artist.toLowerCase().includes(query);
             return titleMatch || artistMatch;
         });
         
-        // Re-render with filtered results
         this.renderPlaylist(this.state.filteredPlaylist);
         
         console.log(`🔍 Search: "${query}" - ${this.state.filteredPlaylist.length} results`);
@@ -596,17 +629,10 @@ class MusicPlayer {
     // KEYBOARD SHORTCUTS
     // ================================
     
-    /**
-     * Enhanced keyboard shortcuts handler
-     */
     onKeyPress(e) {
-        // Don't trigger if typing in search
-        if (e.target === this.searchInput) {
-            return;
-        }
-        
-        // Don't trigger if typing in any input
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        if (e.target === this.searchInput || 
+            e.target.tagName === 'INPUT' || 
+            e.target.tagName === 'TEXTAREA') {
             return;
         }
         
@@ -614,63 +640,45 @@ class MusicPlayer {
             case ' ':
                 e.preventDefault();
                 this.togglePlay();
-                console.log('⌨️ Keyboard: Play/Pause');
                 break;
-                
             case 'arrowright':
                 e.preventDefault();
                 this.nextSong();
-                console.log('⌨️ Keyboard: Next');
                 break;
-                
             case 'arrowleft':
                 e.preventDefault();
                 this.prevSong();
-                console.log('⌨️ Keyboard: Previous');
                 break;
-                
             case 'arrowup':
                 e.preventDefault();
                 this.adjustVolume(0.1);
-                console.log('⌨️ Keyboard: Volume Up');
                 break;
-                
             case 'arrowdown':
                 e.preventDefault();
                 this.adjustVolume(-0.1);
-                console.log('⌨️ Keyboard: Volume Down');
                 break;
-                
             case 'm':
                 e.preventDefault();
                 this.toggleMute();
-                console.log('⌨️ Keyboard: Mute Toggle');
                 break;
-                
             case 's':
                 e.preventDefault();
                 this.toggleShuffle();
-                console.log('⌨️ Keyboard: Shuffle Toggle');
                 break;
-                
             case 'r':
                 e.preventDefault();
                 this.cycleRepeatMode();
-                console.log('⌨️ Keyboard: Repeat Cycle');
                 break;
         }
     }
     
-    /**
-     * Adjust volume by delta
-     */
     adjustVolume(delta) {
         const newVolume = clamp(this.state.volume + delta, 0, 1);
         this.setVolume(newVolume);
     }
     
     // ================================
-    // EXISTING METHODS (from Task 2)
+    // UI UPDATE METHODS
     // ================================
     
     updatePlayPauseUI() {
@@ -720,6 +728,7 @@ class MusicPlayer {
         console.error('Audio error:', e);
         const song = playlist[this.state.currentIndex];
         console.error(`Failed to load: ${song.title}`);
+        this.showNotification(`Error loading ${song.title}`);
     }
     
     seekByClick(e) {
@@ -845,13 +854,22 @@ class MusicPlayer {
 }
 
 // ================================
+// REPEAT MODE ENUM
+// ================================
+
+const RepeatMode = {
+    OFF: 'off',
+    ALL: 'all',
+    ONE: 'one'
+};
+
+// ================================
 // INITIALIZE APPLICATION
 // ================================
 
 document.addEventListener('DOMContentLoaded', () => {
     window.musicPlayer = new MusicPlayer();
     
-    // Log keyboard shortcuts for user reference
     console.log(`
 🎹 KEYBOARD SHORTCUTS:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -866,3 +884,15 @@ document.addEventListener('DOMContentLoaded', () => {
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     `);
 });
+
+// ================================
+// SERVICE WORKER (Optional PWA)
+// ================================
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        // navigator.registerServiceWorker('/sw.js')
+        //     .then(reg => console.log('✅ Service Worker registered'))
+        //     .catch(err => console.log('❌ Service Worker failed', err));
+    });
+}

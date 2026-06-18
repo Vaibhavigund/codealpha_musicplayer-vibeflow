@@ -1,2 +1,31 @@
+# macOS
 .DS_Store
-node_modules
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+
+# Optional: Ignore large audio files (or keep them)
+# assets/music/*.mp3
+
+# Optional: Backup files
+*.backup
+*.bak
+*~
