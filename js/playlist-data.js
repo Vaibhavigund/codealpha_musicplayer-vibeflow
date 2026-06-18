@@ -52,6 +52,48 @@ const playlist = [
         cover: "assets/images/cover6.png",
         audio: "assets/music/song6.mp3",
         duration: "4:31"
+    },
+    {
+    title: "Kashish",
+    artist: "Mitraz",
+    cover: "assets/images/cover7.png",
+    audio: "assets/music/song7.mp3",
+    duration: "3:13"
+    },
+    {
+    title: "Ek Full",
+    artist: "B Praak",
+    cover: "assets/images/cover8.png",
+    audio: "assets/music/song8.mp3",
+    duration: "5:48"
+    },
+    {
+    title: "Jeeo Rangla",
+    artist: "Harshdeep Kaur",
+    cover: "assets/images/cover9.png",
+    audio: "assets/music/song9.mp3",
+    duration: "4:44"
+    },
+    {
+    title: "Kakan",
+    artist: "Neha Bhasin",
+    cover: "assets/images/cover10.png",
+    audio: "assets/music/song10.mp3",
+    duration: "4:15"
+    },
+    {
+    title: "Bhaga",
+    artist: "Amar Jalal",
+    cover: "assets/images/cover11.png",
+    audio: "assets/music/song11.mp3",
+    duration: "3:03"
+    },
+    {
+    title: "Kewda Cha Paan",
+    artist: "Ajay-Atul",
+    cover: "assets/images/cover12.png",
+    audio: "assets/music/song12.mp3",
+    duration: "5:04"
     }
 ];
 

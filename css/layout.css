@@ -1,38 +1,118 @@
 /* ================================
-   LAYOUT STRUCTURE
+   PREMIUM LAYOUT - GLASSMORPHISM
    ================================ */
 
-/* Main Container */
 .container {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-md);
-    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    padding: var(--spacing-lg);
+    background: #0B0B0F;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Music Player Card */
+/* Animated Gradient Background */
+.container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.20) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
+    animation: gradientFloat 25s ease-in-out infinite;
+    z-index: var(--z-background);
+}
+
+@keyframes gradientFloat {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(-5%, -8%) rotate(5deg); }
+    66% { transform: translate(5%, 8%) rotate(-5deg); }
+}
+
+/* Noise Texture Overlay */
+.container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: var(--z-base);
+}
+
+/* Main Player Card */
 .music-player {
     width: 100%;
     max-width: var(--max-width);
-    background-color: var(--color-bg-elevated);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-xl);
+    background: var(--glass-bg);
+    backdrop-filter: var(--backdrop-blur-lg);
+    -webkit-backdrop-filter: var(--backdrop-blur-lg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-glass), var(--shadow-2xl);
     overflow: hidden;
     display: grid;
     grid-template-columns: 1fr;
     gap: 0;
+    position: relative;
+    z-index: var(--z-dropdown);
 }
 
-/* Player Section (Left/Top) */
+/* Top Shine Effect */
+.music-player::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(168, 85, 247, 0.6) 25%,
+        rgba(236, 72, 153, 0.6) 50%,
+        rgba(168, 85, 247, 0.6) 75%,
+        transparent 100%);
+    animation: shimmerTop 3s linear infinite;
+}
+
+@keyframes shimmerTop {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+/* Player Section (Left Panel) */
 .player-section {
-    padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-xl);
+    padding: var(--spacing-2xl);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-lg);
-    background: linear-gradient(180deg, var(--color-bg-elevated) 0%, var(--color-bg-main) 100%);
+    gap: var(--spacing-xl);
+    background: 
+        linear-gradient(180deg, 
+            rgba(168, 85, 247, 0.08) 0%, 
+            rgba(0, 0, 0, 0) 100%);
+    position: relative;
+}
+
+.player-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    background: linear-gradient(180deg,
+        transparent 0%,
+        var(--glass-border) 20%,
+        var(--glass-border) 80%,
+        transparent 100%);
 }
 
 /* Brand Header */
@@ -41,23 +121,29 @@
     align-items: center;
     gap: var(--spacing-sm);
     align-self: flex-start;
-    animation: fadeInDown 0.6s var(--ease-smooth);
-    margin-bottom: var(--spacing-sm);
+    animation: fadeInDown 0.8s var(--ease-smooth);
 }
 
 .brand-icon {
-    color: var(--color-primary);
-    filter: drop-shadow(0 0 8px var(--color-primary-glow));
+    color: var(--neon-purple);
+    filter: drop-shadow(0 0 12px var(--color-primary-glow));
+    animation: iconPulse 3s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% { filter: drop-shadow(0 0 12px var(--color-primary-glow)); }
+    50% { filter: drop-shadow(0 0 20px var(--color-primary-glow)); }
 }
 
 .brand-name {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
-    background: linear-gradient(135deg, var(--color-brand-gradient-start), var(--color-brand-gradient-end));
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-black);
+    background: var(--gradient-neon);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    letter-spacing: -0.5px;
+    letter-spacing: var(--letter-spacing-tight);
+    text-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
 }
 
 /* Album Cover Container */
@@ -66,26 +152,55 @@
     max-width: var(--album-size-mobile);
     aspect-ratio: 1;
     position: relative;
-    margin-bottom: var(--spacing-sm);
+    margin: var(--spacing-lg) 0;
 }
 
+/* Album Cover with Luxury Frame */
 .album-cover {
     width: 100%;
     height: 100%;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
     position: relative;
-    background: linear-gradient(135deg, var(--color-bg-raised) 0%, var(--color-bg-main) 100%);
+    background: linear-gradient(135deg, #1A1A24 0%, #0B0B0F 100%);
+    box-shadow: var(--shadow-depth);
+    transition: all var(--transition-normal) var(--ease-smooth);
 }
 
+/* Glowing Border Frame */
+.album-cover::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: var(--gradient-neon);
+    border-radius: var(--radius-xl);
+    z-index: -1;
+    opacity: 0;
+    filter: blur(20px);
+    transition: opacity var(--transition-normal);
+}
+
+.album-cover:hover::before {
+    opacity: 0.8;
+}
+
+/* Neon Glow Effect */
 .album-cover::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    background: linear-gradient(180deg, 
+        rgba(168, 85, 247, 0.1) 0%, 
+        transparent 50%, 
+        rgba(236, 72, 153, 0.1) 100%);
     pointer-events: none;
     z-index: 1;
+    border-radius: var(--radius-xl);
+}
+
+.album-cover:hover {
+    transform: scale(1.05) translateY(-8px);
+    box-shadow: var(--shadow-xl), var(--shadow-glow-neon);
 }
 
 .album-cover img {
@@ -95,67 +210,66 @@
     display: block;
 }
 
-/* Album Placeholder - Shows when image fails to load */
 .album-placeholder {
     position: absolute;
     inset: 0;
     display: none;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    background: linear-gradient(135deg, #1A1A24 0%, #2A2A3E 100%);
     color: var(--color-text-muted);
-    z-index: 0;
 }
 
 .album-placeholder svg {
-    opacity: 0.3;
-    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+    opacity: 0.2;
 }
 
 /* Song Information */
 .song-info {
     text-align: center;
     width: 100%;
-    margin-bottom: var(--spacing-sm);
 }
 
 .song-title {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-bold);
     color: var(--color-text-primary);
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    transition: color var(--transition-normal);
+    transition: all var(--transition-normal);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    letter-spacing: var(--letter-spacing-tight);
 }
 
 .song-title.empty-state {
     color: var(--color-text-secondary);
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-xl);
 }
 
 .song-artist {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
     color: var(--color-text-secondary);
     font-weight: var(--font-weight-medium);
     transition: color var(--transition-normal);
+    letter-spacing: var(--letter-spacing-normal);
 }
 
 .song-artist.empty-state {
     color: var(--color-text-muted);
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-md);
     font-style: italic;
 }
 
-/* Playback Controls */
+/* Control Buttons Container */
 .controls {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--spacing-lg);
     width: 100%;
-    margin: var(--spacing-md) 0;
+    margin: var(--spacing-xl) 0 var(--spacing-lg);
 }
 
 /* Progress Container */
@@ -164,16 +278,17 @@
     align-items: center;
     gap: var(--spacing-md);
     width: 100%;
-    margin: var(--spacing-md) 0;
+    margin: var(--spacing-lg) 0;
 }
 
 .time {
     font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-text-secondary);
-    font-weight: var(--font-weight-medium);
-    min-width: 45px;
+    min-width: 50px;
     text-align: center;
     font-variant-numeric: tabular-nums;
+    letter-spacing: var(--letter-spacing-wide);
 }
 
 /* Volume Container */
@@ -188,17 +303,17 @@
     flex: 1;
 }
 
-/* Playlist Section (Right/Bottom) */
+/* Playlist Section (Right Panel) */
 .playlist-section {
-    background-color: var(--color-bg-main);
-    padding: var(--spacing-xl);
+    background: rgba(0, 0, 0, 0.3);
+    padding: var(--spacing-2xl);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
-    max-height: 650px;
+    gap: var(--spacing-xl);
+    max-height: 750px;
+    position: relative;
 }
 
-/* Search Container */
 .search-container {
     position: relative;
     width: 100%;
@@ -209,23 +324,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: var(--spacing-md);
-    border-bottom: 2px solid var(--color-border);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 2px solid var(--glass-border);
 }
 
 .playlist-header h3 {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-xl);
     font-weight: var(--font-weight-bold);
     color: var(--color-text-primary);
+    letter-spacing: var(--letter-spacing-tight);
 }
 
 .playlist-count {
     font-size: var(--font-size-sm);
-    color: var(--color-text-primary);
-    background-color: var(--color-bg-raised);
+    font-weight: var(--font-weight-bold);
+    color: var(--neon-purple);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: var(--radius-full);
-    font-weight: var(--font-weight-semibold);
+    box-shadow: var(--shadow-glow-soft);
 }
 
 /* Playlist Container */
@@ -235,32 +353,30 @@
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xs);
-    padding-right: var(--spacing-xs);
+    gap: var(--spacing-md);
+    padding-right: var(--spacing-sm);
 }
 
 /* Custom Scrollbar */
 .playlist-container::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 .playlist-container::-webkit-scrollbar-track {
-    background: var(--color-bg-elevated);
-    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--radius-full);
 }
 
 .playlist-container::-webkit-scrollbar-thumb {
-    background: var(--color-border-hover);
-    border-radius: var(--radius-sm);
+    background: var(--glass-bg-hover);
+    border-radius: var(--radius-full);
+    border: 2px solid transparent;
+    background-clip: padding-box;
     transition: background var(--transition-fast);
 }
 
 .playlist-container::-webkit-scrollbar-thumb:hover {
-    background: var(--color-text-muted);
-}
-
-/* Firefox scrollbar */
-.playlist-container {
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-border-hover) var(--color-bg-elevated);
+    background: var(--neon-purple);
+    background-clip: padding-box;
+    box-shadow: var(--shadow-glow-purple);
 }

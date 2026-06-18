@@ -1,59 +1,47 @@
 /* ================================
-   ANIMATIONS & TRANSITIONS - ENHANCED
+   PREMIUM ANIMATIONS
    ================================ */
 
-/* Rotating Album Animation - Enhanced Control */
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
+/* ========== SUBTLE FLOATING EFFECT ========== */
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
     }
-    to {
-        transform: rotate(360deg);
+    50% {
+        transform: translateY(-12px);
     }
 }
 
-/* Playing state - smooth rotation */
-.rotating-album.playing {
-    animation: rotate 20s linear infinite;
+.album-cover-container {
+    animation: float 8s ease-in-out infinite;
 }
 
-/* Paused state - maintain position */
-.rotating-album.paused {
+.album-cover-container:hover {
     animation-play-state: paused;
 }
 
-/* Stop rotation completely when not playing */
-.rotating-album:not(.playing) {
-    animation: none;
-}
+/* ========== PAGE ENTRANCE ========== */
 
-/* Smooth song info transitions */
-.song-title,
-.song-artist {
-    transition: opacity 0.3s ease-in-out, color var(--transition-normal);
-}
-
-/* Fade In Animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px) scale(0.95);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
 .music-player {
-    animation: fadeIn 0.6s var(--ease-smooth);
+    animation: fadeIn 0.8s var(--ease-smooth);
 }
 
-/* Fade In Down for Brand */
 @keyframes fadeInDown {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-20px);
     }
     to {
         opacity: 1;
@@ -61,47 +49,12 @@
     }
 }
 
-/* Shimmer Loading Animation */
-@keyframes shimmer {
-    0% {
-        background-position: -1000px 0;
-    }
-    100% {
-        background-position: 1000px 0;
-    }
-}
+/* ========== PLAYLIST STAGGERED ENTRANCE ========== */
 
-.loading-shimmer {
-    background: linear-gradient(
-        90deg,
-        var(--color-bg-elevated) 0%,
-        var(--color-bg-raised) 50%,
-        var(--color-bg-elevated) 100%
-    );
-    background-size: 1000px 100%;
-    animation: shimmer 2s infinite;
-}
-
-/* Glow Pulse Animation - Enhanced */
-@keyframes glowPulse {
-    0%, 100% {
-        box-shadow: var(--shadow-md), 0 0 0 0 var(--color-primary-glow);
-    }
-    50% {
-        box-shadow: var(--shadow-lg), 0 0 20px 5px var(--color-primary-glow);
-    }
-}
-
-.play-btn.playing,
-.playing .play-btn {
-    animation: glowPulse 2s ease-in-out infinite;
-}
-
-/* Slide In Animation for Playlist Items - Staggered */
-@keyframes slideIn {
+@keyframes slideInRight {
     from {
         opacity: 0;
-        transform: translateX(-20px);
+        transform: translateX(-30px);
     }
     to {
         opacity: 1;
@@ -110,69 +63,120 @@
 }
 
 .playlist-item {
-    animation: slideIn 0.4s var(--ease-smooth);
+    animation: slideInRight 0.5s var(--ease-smooth);
     animation-fill-mode: both;
 }
 
-/* Stagger animation delays */
-.playlist-item:nth-child(1) { animation-delay: 0.05s; }
-.playlist-item:nth-child(2) { animation-delay: 0.1s; }
-.playlist-item:nth-child(3) { animation-delay: 0.15s; }
-.playlist-item:nth-child(4) { animation-delay: 0.2s; }
-.playlist-item:nth-child(5) { animation-delay: 0.25s; }
-.playlist-item:nth-child(6) { animation-delay: 0.3s; }
-.playlist-item:nth-child(n+7) { animation-delay: 0.35s; }
+.playlist-item:nth-child(1) { animation-delay: 0.1s; }
+.playlist-item:nth-child(2) { animation-delay: 0.15s; }
+.playlist-item:nth-child(3) { animation-delay: 0.2s; }
+.playlist-item:nth-child(4) { animation-delay: 0.25s; }
+.playlist-item:nth-child(5) { animation-delay: 0.3s; }
+.playlist-item:nth-child(6) { animation-delay: 0.35s; }
+.playlist-item:nth-child(n+7) { animation-delay: 0.4s; }
 
-/* Smooth button press animation */
-@keyframes buttonPress {
+/* ========== PLAY BUTTON GLOW PULSE ========== */
+
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow: var(--shadow-lg), 0 0 30px var(--color-primary-glow);
+    }
+    50% {
+        box-shadow: var(--shadow-xl), 0 0 50px rgba(168, 85, 247, 0.8);
+    }
+}
+
+.play-btn.playing,
+.playing .play-btn {
+    animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+/* ========== SHIMMER EFFECTS ========== */
+
+@keyframes shimmer {
     0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* ========== TEXT FADE TRANSITIONS ========== */
+
+.song-title,
+.song-artist {
+    transition: 
+        opacity var(--transition-normal) ease-in-out,
+        color var(--transition-normal),
+        transform var(--transition-normal);
+}
+
+/* ========== BUTTON INTERACTIONS ========== */
+
+@keyframes buttonPress {
+    0%, 100% {
         transform: scale(1);
     }
     50% {
-        transform: scale(0.95);
-    }
-    100% {
-        transform: scale(1);
+        transform: scale(0.92);
     }
 }
 
-/* Active button feedback */
 .control-btn:active {
-    animation: buttonPress 0.2s ease;
+    animation: buttonPress 0.25s var(--ease-smooth);
 }
 
-/* Progress fill smooth animation */
+/* ========== PROGRESS TRANSITIONS ========== */
+
 .progress-filled,
 .volume-filled {
     transition: width 0.1s linear;
 }
 
-/* Smooth scale for handles */
 .progress-handle,
 .volume-handle {
-    transition: transform var(--transition-normal) var(--ease-smooth);
+    transition: transform var(--transition-normal) var(--ease-spring);
 }
 
-/* Ripple effect on active items */
-@keyframes ripple {
+/* ========== HOVER LIFT EFFECT ========== */
+
+@keyframes hoverLift {
     0% {
-        box-shadow: 0 0 0 0 var(--color-primary-glow);
+        transform: translateY(0);
     }
     100% {
-        box-shadow: 0 0 0 20px rgba(29, 185, 84, 0);
+        transform: translateY(-4px);
+    }
+}
+
+/* ========== NEON PULSE ========== */
+
+@keyframes neonPulse {
+    0%, 100% {
+        box-shadow: 
+            var(--shadow-lg),
+            0 0 20px rgba(168, 85, 247, 0.4);
+    }
+    50% {
+        box-shadow: 
+            var(--shadow-xl),
+            0 0 40px rgba(168, 85, 247, 0.7);
     }
 }
 
 .playlist-item.active {
-    animation: ripple 1s ease-out;
+    animation: neonPulse 3s ease-in-out infinite;
 }
 
-/* Smooth state transitions */
+/* ========== SMOOTH TRANSITIONS ========== */
+
 * {
     transition-timing-function: var(--ease-smooth);
 }
 
-/* Respect reduced motion preference */
+/* ========== REDUCED MOTION ========== */
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -182,7 +186,9 @@
         transition-duration: 0.01ms !important;
     }
     
-    .rotating-album {
+    .album-cover-container,
+    .play-btn,
+    .playlist-item {
         animation: none !important;
     }
 }

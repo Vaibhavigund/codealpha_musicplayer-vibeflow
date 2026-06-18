@@ -1,112 +1,131 @@
 /* ================================
-   RESPONSIVE DESIGN
-   Mobile First Approach
+   PREMIUM RESPONSIVE DESIGN
    ================================ */
 
 /* ========== TABLET (768px and up) ========== */
+
 @media screen and (min-width: 768px) {
     
-    /* Larger album cover on tablet */
     .album-cover-container {
-        max-width: 260px;
-    }
-    
-    /* Adjust padding */
-    .player-section {
-        padding: var(--spacing-xl) var(--spacing-2xl);
-        gap: var(--spacing-xl);
-    }
-    
-    .playlist-section {
-        padding: var(--spacing-xl) var(--spacing-lg);
-    }
-    
-    /* Font sizes */
-    .song-title {
-        font-size: var(--font-size-2xl);
-    }
-    
-    .song-artist {
-        font-size: var(--font-size-lg);
-    }
-    
-    .brand-name {
-        font-size: var(--font-size-xl);
-    }
-
-    /* Better control spacing */
-    .controls {
-        gap: var(--spacing-xl);
-    }
-    
-}
-
-/* ========== DESKTOP (1024px and up) ========== */
-@media screen and (min-width: 1024px) {
-    
-    /* Side-by-side layout */
-    .music-player {
-        grid-template-columns: var(--player-width) 1fr;
-        min-height: 700px;
-    }
-    
-    /* Full-size album cover */
-    .album-cover-container {
-        max-width: var(--album-size);
-    }
-    
-    /* Adjust playlist height */
-    .playlist-section {
-        max-height: 100%;
-        min-height: 700px;
-    }
-    
-    /* Better spacing for controls */
-    .controls {
-        gap: var(--spacing-xl);
-    }
-
-    .player-section {
-        gap: var(--spacing-xl);
-    }
-    
-}
-
-/* ========== LARGE DESKTOP (1200px and up) ========== */
-@media screen and (min-width: 1200px) {
-    
-    .music-player {
-        grid-template-columns: 500px 1fr;
+        max-width: 280px;
     }
     
     .player-section {
         padding: var(--spacing-2xl);
+        gap: var(--spacing-xl);
     }
     
     .playlist-section {
         padding: var(--spacing-2xl) var(--spacing-xl);
     }
+    
+    .song-title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .song-artist {
+        font-size: var(--font-size-xl);
+    }
+    
+    .brand-name {
+        font-size: var(--font-size-2xl);
+    }
+
+    .controls {
+        gap: var(--spacing-xl);
+    }
+
+    .control-btn {
+        width: 60px;
+        height: 60px;
+    }
+
+    .play-btn {
+        width: 96px;
+        height: 96px;
+    }
+    
+}
+
+/* ========== DESKTOP (1024px and up) ========== */
+
+@media screen and (min-width: 1024px) {
+    
+    .music-player {
+        grid-template-columns: var(--player-width) 1fr;
+        min-height: 750px;
+    }
+    
+    .album-cover-container {
+        max-width: var(--album-size);
+    }
+    
+    .playlist-section {
+        max-height: 100%;
+        min-height: 750px;
+    }
+    
+    .controls {
+        gap: var(--spacing-2xl);
+    }
+
+    .player-section {
+        gap: var(--spacing-2xl);
+    }
+
+    .player-section::after {
+        width: 1px;
+    }
+    
+}
+
+/* ========== LARGE DESKTOP (1200px and up) ========== */
+
+@media screen and (min-width: 1200px) {
+    
+    .music-player {
+        grid-template-columns: 560px 1fr;
+    }
+    
+    .player-section {
+        padding: var(--spacing-3xl) var(--spacing-2xl);
+    }
+    
+    .playlist-section {
+        padding: var(--spacing-3xl) var(--spacing-2xl);
+    }
 
     .album-cover-container {
-        max-width: 300px;
+        max-width: 380px;
+    }
+
+    .play-btn {
+        width: 104px;
+        height: 104px;
     }
     
 }
 
 /* ========== EXTRA LARGE DESKTOP (1440px and up) ========== */
+
 @media screen and (min-width: 1440px) {
     
     .music-player {
-        grid-template-columns: 550px 1fr;
+        grid-template-columns: 600px 1fr;
     }
 
     .album-cover-container {
-        max-width: 320px;
+        max-width: 420px;
+    }
+
+    .song-title {
+        font-size: var(--font-size-3xl);
     }
     
 }
 
 /* ========== SMALL MOBILE (max 480px) ========== */
+
 @media screen and (max-width: 480px) {
     
     .container {
@@ -114,7 +133,7 @@
     }
     
     .player-section {
-        padding: var(--spacing-lg) var(--spacing-md);
+        padding: var(--spacing-xl) var(--spacing-md);
         gap: var(--spacing-md);
     }
     
@@ -122,49 +141,45 @@
         padding: var(--spacing-md);
     }
     
-    /* Smaller album cover */
     .album-cover-container {
-        max-width: 180px;
+        max-width: 200px;
     }
     
-    /* Smaller font sizes */
     .song-title {
-        font-size: var(--font-size-lg);
+        font-size: var(--font-size-xl);
     }
     
     .song-artist {
-        font-size: var(--font-size-sm);
+        font-size: var(--font-size-md);
     }
 
     .brand-name {
-        font-size: var(--font-size-md);
+        font-size: var(--font-size-lg);
     }
     
-    /* Smaller controls */
     .control-btn {
-        width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
     }
     
     .play-btn {
-        width: 60px;
-        height: 60px;
+        width: 72px;
+        height: 72px;
     }
 
     .controls {
         gap: var(--spacing-md);
     }
     
-    /* Adjust playlist items for small screens */
     .playlist-item {
-        grid-template-columns: 28px 48px 1fr 55px;
+        grid-template-columns: 32px 56px 1fr 60px;
         gap: var(--spacing-sm);
-        padding: var(--spacing-sm);
+        padding: var(--spacing-sm) var(--spacing-md);
     }
     
     .playlist-item-cover {
-        width: 48px;
-        height: 48px;
+        width: 56px;
+        height: 56px;
     }
     
     .playlist-item-title {
@@ -178,10 +193,15 @@
     .playlist-item-number {
         font-size: var(--font-size-sm);
     }
+
+    .playlist-header h3 {
+        font-size: var(--font-size-lg);
+    }
     
 }
 
 /* ========== LANDSCAPE MOBILE ========== */
+
 @media screen and (max-height: 600px) and (orientation: landscape) {
     
     .container {
@@ -194,7 +214,7 @@
     }
     
     .album-cover-container {
-        max-width: 140px;
+        max-width: 160px;
     }
     
     .playlist-section {
@@ -220,9 +240,11 @@
 }
 
 /* ========== PRINT STYLES ========== */
+
 @media print {
     .music-player {
         box-shadow: none;
+        border: 1px solid #000;
     }
     
     .controls,
@@ -230,32 +252,27 @@
     .search-container {
         display: none;
     }
-}
 
-/* ========== REDUCED MOTION ========== */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-    
-    .rotating-album {
-        animation: none !important;
+    .container::before,
+    .container::after {
+        display: none;
     }
 }
 
 /* ========== HIGH CONTRAST MODE ========== */
+
 @media (prefers-contrast: high) {
     :root {
-        --color-border: #404040;
-        --color-text-secondary: #e0e0e0;
+        --glass-border: rgba(255, 255, 255, 0.4);
+        --color-text-secondary: #E5DEFF;
+        --color-border: rgba(255, 255, 255, 0.3);
     }
     
     .control-btn,
-    .playlist-item {
-        border: 2px solid var(--color-border);
+    .playlist-item,
+    .search-input,
+    .progress-bar,
+    .volume-bar {
+        border-width: 2px;
     }
 }
