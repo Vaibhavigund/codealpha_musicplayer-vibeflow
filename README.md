@@ -1,29 +1,37 @@
 # 🎵 VibeFlow Music Player
 
-A modern music player built using HTML, CSS, and Vanilla JavaScript.
+A modern and responsive Music Player built using HTML, CSS, and Vanilla JavaScript.
 
-## Features
+## 🚀 Live Demo
 
-* Play and Pause songs
-* Next and Previous track controls
-* Interactive playlist
-* Song title and artist display
-* Song duration display
-* Progress bar with seeking support
-* Volume control with mute/unmute
-* Autoplay functionality
-* Real-time song search
-* Responsive design for desktop and mobile
+https://vaibhavigund.github.io/vibeflow-music-player/
 
-## Technologies Used
+## 📂 GitHub Repository
+
+https://github.com/Vaibhavigund/vibeflow-music-player
+
+## ✨ Features
+
+* ▶️ Play and Pause songs
+* ⏭️ Next and Previous track controls
+* 🎵 Interactive playlist
+* 🔍 Real-time song search
+* ⏱️ Song duration and current playback time
+* 📊 Progress bar with seeking functionality
+* 🔊 Volume control and mute/unmute
+* 🔄 Autoplay support
+* 📱 Fully responsive design
+* 🎨 Modern glassmorphism-inspired UI
+
+## 🛠️ Technologies Used
 
 * HTML5
 * CSS3
 * JavaScript (ES6)
-* Audio API
+* HTML Audio API
 * Local Storage
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 vibeflow-music-player/
@@ -49,50 +57,37 @@ vibeflow-music-player/
     └── music/
 ```
 
-## Installation
+## 🎯 Project Objective
 
-1. Clone the repository
+This project was developed as part of a Frontend Development Internship Task.
+
+The goal was to create a fully functional music player using HTML, CSS, and JavaScript with:
+
+* Audio playback controls
+* Song information display
+* Progress tracking
+* Volume control
+* Playlist functionality
+* Responsive user interface
+
+## ▶️ How to Run
+
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/Vaibhavigund/vibeflow-music-player.git
 ```
 
-2. Open the project folder
+2. Open the project folder.
 
-```bash
-cd vibeflow-music-player
-```
+3. Launch `index.html` in your browser.
 
-3. Open `index.html` in your browser
-
-## Usage
-
-* Click Play to start music.
-* Use Next and Previous buttons to switch tracks.
-* Click a playlist item to play a specific song.
-* Use the progress bar to seek within a song.
-* Adjust volume using the volume slider.
-* Search songs using the search box.
-
-## Assignment Completion
-
-### Task 4: Music Player using JavaScript
-
-Completed Features:
-
-* Audio playback using HTML5 Audio
-* Play/Pause functionality
-* Next/Previous track controls
-* Song information display
-* Progress bar
-* Volume control
-* Playlist support
-* Autoplay support
-* Search functionality
-* Responsive UI
-
-## Author
+## 👩‍💻 Author
 
 **Vaibhavi Gund**
 
 GitHub: https://github.com/Vaibhavigund
+
+LinkedIn: Vaibhavi Gund
+
+Email: [vaibhavi.gund0324@gmail.com](mailto:vaibhavi.gund0324@gmail.com)
