@@ -1,16 +1,18 @@
 /* ================================
-   PREMIUM COMPONENTS
+   PREMIUM COMPONENTS - PORTFOLIO GRADE
    ================================ */
 
-/* ========== CONTROL BUTTONS ========== */
+/* ========================================
+   CONTROL BUTTONS
+   ======================================== */
 
 .control-btn {
-    width: 56px;
-    height: 56px;
+    width: var(--control-btn-size);
+    height: var(--control-btn-size);
     border-radius: var(--radius-full);
-    background: var(--glass-bg);
+    background: var(--glass-bg-strong);
     backdrop-filter: var(--backdrop-blur-sm);
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
     color: var(--color-text-secondary);
     display: flex;
     align-items: center;
@@ -24,35 +26,38 @@
 .control-btn::before {
     content: '';
     position: absolute;
-    inset: -2px;
+    inset: -3px;
     border-radius: var(--radius-full);
     background: var(--gradient-neon);
     opacity: 0;
     transition: opacity var(--transition-normal);
     z-index: -1;
-    filter: blur(8px);
+    filter: blur(12px);
 }
 
 .control-btn:hover {
     color: var(--color-text-primary);
     background: var(--glass-bg-hover);
     border-color: var(--glass-border-hover);
-    transform: scale(1.15) translateY(-2px);
+    transform: scale(1.18) translateY(-3px);
     box-shadow: var(--shadow-md), var(--shadow-glow-soft);
 }
 
 .control-btn:hover::before {
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 .control-btn:active {
-    transform: scale(1.08);
+    transform: scale(1.12) translateY(-1px);
 }
 
-/* Main Play Button - Visually Dominant */
+/* ========================================
+   MAIN PLAY BUTTON - DOMINANT
+   ======================================== */
+
 .play-btn {
-    width: 88px;
-    height: 88px;
+    width: var(--play-btn-size);
+    height: var(--play-btn-size);
     background: var(--gradient-primary);
     border: none;
     color: white;
@@ -66,24 +71,40 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.2) 0%, 
-        transparent 50%);
+        rgba(255, 255, 255, 0.25) 0%, 
+        transparent 60%);
     opacity: 0;
     transition: opacity var(--transition-normal);
 }
 
+.play-btn::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: var(--radius-full);
+    background: var(--gradient-neon);
+    opacity: 0;
+    filter: blur(20px);
+    z-index: -1;
+    transition: opacity var(--transition-normal);
+}
+
 .play-btn:hover {
-    background: var(--gradient-primary);
-    transform: scale(1.2) translateY(-4px);
-    box-shadow: var(--shadow-xl), var(--shadow-glow-neon);
+    background: linear-gradient(135deg, #C084FC 0%, #F472B6 100%);
+    transform: scale(1.22) translateY(-6px);
+    box-shadow: var(--shadow-xl), var(--shadow-glow-intense);
 }
 
 .play-btn:hover::before {
     opacity: 1;
 }
 
+.play-btn:hover::after {
+    opacity: 0.6;
+}
+
 .play-btn:active {
-    transform: scale(1.12);
+    transform: scale(1.16) translateY(-3px);
 }
 
 /* Active State Buttons */
@@ -99,31 +120,33 @@
 .repeat-btn.active::after {
     content: '';
     position: absolute;
-    bottom: 8px;
-    width: 6px;
-    height: 6px;
+    bottom: 10px;
+    width: 7px;
+    height: 7px;
     background: var(--neon-purple);
     border-radius: var(--radius-full);
-    box-shadow: 0 0 12px var(--neon-purple);
+    box-shadow: 0 0 16px var(--neon-purple);
 }
 
 .repeat-btn.repeat-one::before {
     content: '1';
     position: absolute;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: var(--font-weight-black);
     color: var(--neon-purple);
     z-index: 1;
 }
 
-/* ========== PROGRESS BAR ========== */
+/* ========================================
+   PROGRESS BAR - PREMIUM
+   ======================================== */
 
 .progress-bar {
     flex: 1;
-    height: 10px;
-    background: var(--glass-bg);
+    height: 12px;
+    background: var(--glass-bg-strong);
     backdrop-filter: var(--backdrop-blur-sm);
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
     border-radius: var(--radius-full);
     position: relative;
     cursor: pointer;
@@ -133,9 +156,10 @@
 }
 
 .progress-bar:hover {
-    height: 12px;
+    height: 14px;
     background: var(--glass-bg-hover);
-    box-shadow: var(--shadow-inset), var(--shadow-glow-soft);
+    box-shadow: var(--shadow-inset-strong), var(--shadow-glow-soft);
+    border-color: var(--glass-border-hover);
 }
 
 .progress-filled {
@@ -145,7 +169,7 @@
     width: 30%;
     transition: width 0.1s linear;
     position: relative;
-    box-shadow: 0 0 20px var(--color-primary-glow);
+    box-shadow: 0 0 24px var(--color-primary-glow);
 }
 
 .progress-filled::after {
@@ -157,9 +181,9 @@
     bottom: 0;
     background: linear-gradient(90deg, 
         transparent 0%, 
-        rgba(255, 255, 255, 0.4) 50%, 
+        rgba(255, 255, 255, 0.5) 50%, 
         transparent 100%);
-    animation: progressShimmer 2s linear infinite;
+    animation: progressShimmer 2.5s linear infinite;
 }
 
 @keyframes progressShimmer {
@@ -168,19 +192,19 @@
 }
 
 .progress-handle {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     background: white;
     border-radius: var(--radius-full);
     position: absolute;
     top: 50%;
-    right: -10px;
+    right: -11px;
     transform: translateY(-50%) scale(0);
     transition: transform var(--transition-normal) var(--ease-spring);
     box-shadow: 
-        0 4px 12px rgba(0, 0, 0, 0.5),
-        0 0 0 4px var(--glass-bg-active),
-        0 0 20px var(--color-primary-glow);
+        0 4px 16px rgba(0, 0, 0, 0.6),
+        0 0 0 5px var(--glass-bg-active),
+        0 0 24px var(--color-primary-glow);
     cursor: grab;
 }
 
@@ -190,23 +214,25 @@
 
 .progress-handle:active {
     cursor: grabbing;
-    transform: translateY(-50%) scale(1.4);
+    transform: translateY(-50%) scale(1.5);
 }
 
-/* ========== VOLUME CONTROLS ========== */
+/* ========================================
+   VOLUME CONTROLS
+   ======================================== */
 
 .volume-icon-btn {
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-text-secondary);
     transition: all var(--transition-normal) var(--ease-spring);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     cursor: pointer;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    background: var(--glass-bg-strong);
+    border: 2px solid var(--glass-border);
     box-shadow: var(--shadow-sm);
 }
 
@@ -214,19 +240,19 @@
     color: var(--neon-purple);
     background: var(--glass-bg-hover);
     border-color: var(--glass-border-hover);
-    transform: scale(1.1);
+    transform: scale(1.12);
     box-shadow: var(--shadow-md), var(--shadow-glow-soft);
 }
 
 .volume-icon-btn:active {
-    transform: scale(1.05);
+    transform: scale(1.06);
 }
 
 .volume-bar {
     width: 100%;
-    height: 8px;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    height: 10px;
+    background: var(--glass-bg-strong);
+    border: 2px solid var(--glass-border);
     border-radius: var(--radius-full);
     position: relative;
     cursor: pointer;
@@ -235,8 +261,9 @@
 }
 
 .volume-bar:hover {
-    height: 10px;
+    height: 12px;
     background: var(--glass-bg-hover);
+    border-color: var(--glass-border-hover);
 }
 
 .volume-filled {
@@ -246,23 +273,23 @@
     width: 70%;
     transition: width var(--transition-fast);
     position: relative;
-    box-shadow: 0 0 15px var(--color-primary-glow);
+    box-shadow: 0 0 18px var(--color-primary-glow);
 }
 
 .volume-handle {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     background: white;
     border-radius: var(--radius-full);
     position: absolute;
     top: 50%;
-    right: -8px;
+    right: -9px;
     transform: translateY(-50%) scale(0);
     transition: transform var(--transition-normal) var(--ease-spring);
     cursor: grab;
     box-shadow: 
-        0 2px 8px rgba(0, 0, 0, 0.4),
-        0 0 12px var(--color-primary-glow);
+        0 3px 12px rgba(0, 0, 0, 0.5),
+        0 0 16px var(--color-primary-glow);
 }
 
 .volume-bar:hover .volume-handle {
@@ -271,18 +298,20 @@
 
 .volume-handle:active {
     cursor: grabbing;
-    transform: translateY(-50%) scale(1.4);
+    transform: translateY(-50%) scale(1.5);
 }
 
-/* ========== SEARCH INPUT ========== */
+/* ========================================
+   SEARCH INPUT
+   ======================================== */
 
 .search-input {
     width: 100%;
-    padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 54px;
-    background: var(--glass-bg);
-    backdrop-filter: var(--backdrop-blur-sm);
+    padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 56px;
+    background: var(--glass-bg-strong);
+    backdrop-filter: var(--backdrop-blur-md);
     border: 2px solid var(--glass-border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     color: var(--color-text-primary);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-medium);
@@ -298,19 +327,20 @@
 .search-input:hover {
     border-color: var(--glass-border-hover);
     background: var(--glass-bg-hover);
+    box-shadow: var(--shadow-md);
 }
 
 .search-input:focus {
     border-color: var(--neon-purple);
     background: var(--glass-bg-hover);
     box-shadow: 
-        0 0 0 4px rgba(168, 85, 247, 0.15),
+        0 0 0 5px rgba(168, 85, 247, 0.18),
         var(--shadow-glow-soft);
 }
 
 .search-icon {
     position: absolute;
-    left: var(--spacing-md);
+    left: var(--spacing-lg);
     top: 50%;
     transform: translateY(-50%);
     color: var(--color-text-muted);
@@ -320,110 +350,121 @@
 
 .search-input:focus ~ .search-icon {
     color: var(--neon-purple);
-    filter: drop-shadow(0 0 8px var(--color-primary-glow));
+    filter: drop-shadow(0 0 12px var(--color-primary-glow));
 }
 
-/* ========== PLAYLIST ITEMS ========== */
+/* ========================================
+   PLAYLIST ITEMS - FLOATING GLASS CARDS
+   ======================================== */
 
 .playlist-item {
     display: grid;
-    grid-template-columns: 40px 64px 1fr 70px;
+    grid-template-columns: 44px 72px 1fr 75px;
     gap: var(--spacing-md);
     align-items: center;
     padding: var(--spacing-md) var(--spacing-lg);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     cursor: pointer;
     transition: all var(--transition-normal) var(--ease-smooth);
     position: relative;
     background: var(--glass-bg);
     backdrop-filter: var(--backdrop-blur-sm);
-    border: 1px solid transparent;
-    box-shadow: var(--shadow-sm);
+    border: 2px solid transparent;
+    box-shadow: var(--shadow-xs);
 }
 
 .playlist-item::before {
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xl);
     background: var(--gradient-neon);
     opacity: 0;
     transition: opacity var(--transition-normal);
     z-index: -1;
-    filter: blur(12px);
+    filter: blur(16px);
 }
 
 .playlist-item:hover {
-    background: var(--glass-bg-hover);
+    background: var(--glass-bg-strong);
     border-color: var(--glass-border);
-    transform: translateX(8px) scale(1.02);
-    box-shadow: var(--shadow-lg);
+    transform: translateX(12px) translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-lg), var(--shadow-glow-soft);
 }
 
 .playlist-item:hover::before {
-    opacity: 0.15;
+    opacity: 0.2;
 }
 
-/* Active Playlist Item - Glowing Neon Border */
+/* ========================================
+   ACTIVE PLAYLIST ITEM - NEON GLOW
+   ======================================== */
+
 .playlist-item.active {
     background: var(--glass-bg-active);
     border: 2px solid var(--neon-purple);
     box-shadow: 
         var(--shadow-lg),
-        0 0 30px rgba(168, 85, 247, 0.5),
-        inset 0 0 20px rgba(168, 85, 247, 0.1);
-    transform: translateX(8px);
+        0 0 40px rgba(168, 85, 247, 0.6),
+        inset 0 0 30px rgba(168, 85, 247, 0.12);
+    transform: translateX(12px);
 }
 
 .playlist-item.active::before {
-    opacity: 0.25;
-    animation: activeGlow 2s ease-in-out infinite;
+    opacity: 0.35;
+    animation: activeGlow 3s ease-in-out infinite;
 }
 
 @keyframes activeGlow {
-    0%, 100% { opacity: 0.25; }
-    50% { opacity: 0.4; }
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.5; }
 }
 
 .playlist-item.active .playlist-item-title {
     color: var(--neon-purple);
-    text-shadow: 0 0 10px var(--color-primary-glow);
+    text-shadow: 0 0 14px var(--color-primary-glow);
 }
 
 .playlist-item.active .playlist-item-number {
     color: var(--neon-purple);
+    text-shadow: 0 0 10px var(--color-primary-glow);
 }
 
 .playlist-item-number {
     font-size: var(--font-size-md);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-black);
     color: var(--color-text-muted);
     text-align: center;
-    transition: color var(--transition-normal);
+    transition: all var(--transition-normal);
     font-variant-numeric: tabular-nums;
 }
 
 .playlist-item:hover .playlist-item-number {
     color: var(--color-text-primary);
+    transform: scale(1.1);
 }
 
-/* Album Thumbnail */
+/* ========================================
+   ALBUM THUMBNAIL
+   ======================================== */
+
 .playlist-item-cover {
-    width: 64px;
-    height: 64px;
-    border-radius: var(--radius-md);
+    width: 72px;
+    height: 72px;
+    border-radius: var(--radius-lg);
     overflow: hidden;
     position: relative;
-    background: linear-gradient(135deg, #1A1A24 0%, #0B0B0F 100%);
+    background: linear-gradient(135deg, #1C1C24 0%, #0F0F14 100%);
     box-shadow: var(--shadow-md);
-    border: 1px solid var(--glass-border);
+    border: 2px solid var(--glass-border);
     flex-shrink: 0;
     transition: all var(--transition-normal);
 }
 
 .playlist-item:hover .playlist-item-cover {
     box-shadow: var(--shadow-lg), var(--shadow-glow-soft);
-    transform: scale(1.1);
+    transform: scale(1.15) rotate(-2deg);
+    border-color: var(--glass-border-strong);
 }
 
 .playlist-item-cover img {
@@ -446,16 +487,20 @@
     display: flex;
 }
 
+/* ========================================
+   SONG INFO
+   ======================================== */
+
 .playlist-item-info {
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
 }
 
 .playlist-item-title {
     font-size: var(--font-size-md);
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-bold);
     color: var(--color-text-primary);
     overflow: hidden;
     text-overflow: ellipsis;
@@ -480,7 +525,7 @@
 
 .playlist-item-duration {
     font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-bold);
     color: var(--color-text-muted);
     text-align: right;
     transition: color var(--transition-normal);
@@ -498,9 +543,290 @@
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 5px;
-    height: 80%;
+    width: 6px;
+    height: 75%;
     background: var(--gradient-primary);
     border-radius: 0 var(--radius-full) var(--radius-full) 0;
+    box-shadow: 0 0 20px var(--neon-purple);
+}
+/* ================================
+   PREMIUM UI POLISH - COMPONENTS
+   ADD TO END OF EXISTING FILE
+   ================================ */
+
+/* ========== ENHANCED GLASSMORPHISM ========== */
+
+.music-player {
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 30px 80px rgba(0, 0, 0, 0.8),
+        0 15px 40px rgba(168, 85, 247, 0.2);
+}
+
+.playlist-item {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.search-input {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+/* ========== IMPROVED SHADOWS ========== */
+
+.album-cover {
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.control-btn {
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.play-btn {
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(168, 85, 247, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ========== HOVER ANIMATIONS - PLAYLIST CARDS ========== */
+
+.playlist-item {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.playlist-item:hover {
+    transform: translateX(8px) translateY(-2px) scale(1.01);
+    box-shadow: 
+        0 10px 35px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(168, 85, 247, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.playlist-item:hover::before {
+    opacity: 0.25;
+}
+
+.playlist-item-cover {
+    transition: all 0.3s ease;
+}
+
+.playlist-item:hover .playlist-item-cover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* ========== BUTTON HOVER EFFECTS ========== */
+
+.control-btn {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.control-btn:hover {
+    transform: scale(1.15) translateY(-2px);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.5),
+        0 0 25px rgba(168, 85, 247, 0.4);
+}
+
+.play-btn:hover {
+    transform: scale(1.18) translateY(-3px);
+    box-shadow: 
+        0 12px 35px rgba(0, 0, 0, 0.6),
+        0 0 50px rgba(168, 85, 247, 0.7);
+}
+
+/* ========== MODERN PROGRESS BAR ========== */
+
+.progress-bar {
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.progress-bar:hover {
+    box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.5),
+        0 0 15px rgba(168, 85, 247, 0.3);
+}
+
+.progress-filled {
+    box-shadow: 
+        0 0 20px rgba(168, 85, 247, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.progress-handle {
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.6),
+        0 0 0 4px rgba(168, 85, 247, 0.2),
+        0 0 20px rgba(168, 85, 247, 0.5);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.progress-bar:hover .progress-handle {
+    transform: translateY(-50%) scale(1.2);
+    box-shadow: 
+        0 6px 18px rgba(0, 0, 0, 0.7),
+        0 0 0 6px rgba(168, 85, 247, 0.3),
+        0 0 30px rgba(168, 85, 247, 0.7);
+}
+
+/* ========== MODERN VOLUME SLIDER ========== */
+
+.volume-bar {
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.volume-bar:hover {
+    box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.5),
+        0 0 12px rgba(168, 85, 247, 0.3);
+}
+
+.volume-filled {
+    box-shadow: 
+        0 0 15px rgba(168, 85, 247, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.volume-handle {
+    box-shadow: 
+        0 3px 10px rgba(0, 0, 0, 0.5),
+        0 0 15px rgba(168, 85, 247, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.volume-bar:hover .volume-handle {
+    transform: translateY(-50%) scale(1.2);
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.6),
+        0 0 25px rgba(168, 85, 247, 0.6);
+}
+
+/* ========== CLEAN SCROLLBAR ========== */
+
+.playlist-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.playlist-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 10px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, 
+        rgba(168, 85, 247, 0.4) 0%, 
+        rgba(236, 72, 153, 0.4) 100%);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.playlist-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, 
+        rgba(168, 85, 247, 0.7) 0%, 
+        rgba(236, 72, 153, 0.7) 100%);
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+/* ========== IMPROVED SPACING ========== */
+
+.player-section {
+    gap: 1.5rem;
+}
+
+.song-info {
+    margin: 1rem 0;
+}
+
+.controls {
+    margin: 1.25rem 0;
+    gap: 1.5rem;
+}
+
+.progress-container {
+    margin: 1rem 0;
+}
+
+/* ========== SMOOTH TEXT TRANSITIONS ========== */
+
+.song-title,
+.song-artist {
+    transition: all 0.4s ease;
+}
+
+/* ========== SEARCH INPUT POLISH ========== */
+
+.search-input {
+    transition: all 0.3s ease;
+}
+
+.search-input:hover {
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.search-input:focus {
+    box-shadow: 
+        0 0 0 4px rgba(168, 85, 247, 0.2),
+        0 4px 20px rgba(168, 85, 247, 0.3);
+}
+
+/* ========== ACTIVE SONG ENHANCEMENT ========== */
+
+.playlist-item.active {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.playlist-item.active::after {
     box-shadow: 0 0 15px var(--neon-purple);
+}
+
+/* ========== VOLUME ICON HOVER ========== */
+
+.volume-icon-btn {
+    transition: all 0.3s ease;
+}
+
+.volume-icon-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+/* ========== BRAND POLISH ========== */
+
+.brand-name {
+    text-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+}
+
+/* ========== ALBUM HOVER ENHANCEMENT ========== */
+
+.album-cover {
+    transition: all 0.4s ease;
+}
+
+.album-cover:hover {
+    box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.8),
+        0 0 60px rgba(168, 85, 247, 0.5);
+}
+
+/* ========== PLAYLIST HEADER POLISH ========== */
+
+.playlist-count {
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(168, 85, 247, 0.3);
 }

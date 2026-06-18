@@ -1,6 +1,6 @@
 /* ================================
-   PREMIUM MUSIC PLAYER - VARIABLES
-   Dark Luxury Theme with Purple/Pink Neon
+   VIBEFLOW PREMIUM VARIABLES
+   Portfolio-Grade Design System
    ================================ */
 
 :root {
@@ -12,59 +12,64 @@
     --neon-pink: #EC4899;
     --neon-blue: #3B82F6;
     --neon-cyan: #06B6D4;
+    --neon-orange: #F59E0B;
     
     /* Primary Colors */
     --color-primary: #A855F7;
     --color-primary-dark: #9333EA;
     --color-primary-light: #C084FC;
-    --color-primary-glow: rgba(168, 85, 247, 0.5);
+    --color-primary-glow: rgba(168, 85, 247, 0.6);
     
     /* Accent Colors */
     --color-accent-pink: #EC4899;
-    --color-accent-orange: #F59E0B;
     --color-accent-cyan: #06B6D4;
+    --color-accent-orange: #F59E0B;
     
-    /* Background - Deep Luxury Dark */
-    --color-bg-main: #0B0B0F;
-    --color-bg-elevated: #131318;
-    --color-bg-raised: #1A1A24;
-    --color-bg-press: #22222E;
-    --color-bg-overlay: rgba(0, 0, 0, 0.8);
+    /* Background - Deep Premium Dark */
+    --color-bg-main: #0A0A0F;
+    --color-bg-elevated: #0F0F14;
+    --color-bg-raised: #16161C;
+    --color-bg-card: #1C1C24;
+    --color-bg-hover: #22222C;
+    --color-bg-active: #2A2A36;
     
     /* Glassmorphism */
-    --glass-bg: rgba(255, 255, 255, 0.04);
-    --glass-bg-hover: rgba(255, 255, 255, 0.08);
-    --glass-bg-active: rgba(168, 85, 247, 0.12);
-    --glass-border: rgba(255, 255, 255, 0.12);
-    --glass-border-hover: rgba(255, 255, 255, 0.24);
-    --glass-highlight: rgba(255, 255, 255, 0.08);
+    --glass-bg: rgba(255, 255, 255, 0.06);
+    --glass-bg-strong: rgba(255, 255, 255, 0.08);
+    --glass-bg-hover: rgba(255, 255, 255, 0.10);
+    --glass-bg-active: rgba(168, 85, 247, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-border-strong: rgba(255, 255, 255, 0.25);
+    --glass-border-hover: rgba(255, 255, 255, 0.30);
+    --glass-highlight: rgba(255, 255, 255, 0.12);
     
     /* Text Colors */
     --color-text-primary: #FFFFFF;
-    --color-text-secondary: #C4B5FD;
-    --color-text-muted: #7C7C94;
-    --color-text-disabled: #4A4A5E;
+    --color-text-secondary: #D4C5F9;
+    --color-text-muted: #8B8B9E;
+    --color-text-disabled: #52525E;
     
     /* Border Colors */
-    --color-border: rgba(255, 255, 255, 0.08);
-    --color-border-hover: rgba(255, 255, 255, 0.16);
-    --color-border-focus: rgba(168, 85, 247, 0.6);
+    --color-border: rgba(255, 255, 255, 0.10);
+    --color-border-hover: rgba(255, 255, 255, 0.20);
+    --color-border-focus: rgba(168, 85, 247, 0.7);
     
     /* Gradient Definitions */
     --gradient-primary: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
     --gradient-secondary: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
-    --gradient-neon: linear-gradient(135deg, #A855F7 0%, #EC4899 50%, #F59E0B 100%);
+    --gradient-neon: linear-gradient(135deg, #A855F7 0%, #EC4899 60%, #F59E0B 100%);
+    --gradient-vertical: linear-gradient(180deg, #A855F7 0%, #EC4899 100%);
     
-    /* Brand Gradient */
-    --color-brand-gradient-start: #A855F7;
-    --color-brand-gradient-end: #EC4899;
+    /* Radial Gradients for Glows */
+    --glow-purple-radial: radial-gradient(circle at center, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
+    --glow-pink-radial: radial-gradient(circle at center, rgba(236, 72, 153, 0.4) 0%, transparent 70%);
     
     /* ========================================
        SPACING SYSTEM
        ======================================== */
     
-    --spacing-xs: 0.375rem;   /* 6px */
-    --spacing-sm: 0.625rem;   /* 10px */
+    --spacing-xs: 0.5rem;     /* 8px */
+    --spacing-sm: 0.75rem;    /* 12px */
     --spacing-md: 1rem;       /* 16px */
     --spacing-lg: 1.5rem;     /* 24px */
     --spacing-xl: 2rem;       /* 32px */
@@ -81,9 +86,10 @@
     --font-size-sm: 0.875rem;    /* 14px */
     --font-size-md: 1rem;        /* 16px */
     --font-size-lg: 1.125rem;    /* 18px */
-    --font-size-xl: 1.5rem;      /* 24px */
-    --font-size-2xl: 2rem;       /* 32px */
-    --font-size-3xl: 2.5rem;     /* 40px */
+    --font-size-xl: 1.375rem;    /* 22px */
+    --font-size-2xl: 1.875rem;   /* 30px */
+    --font-size-3xl: 2.25rem;    /* 36px */
+    --font-size-4xl: 3rem;       /* 48px */
     
     --font-weight-normal: 400;
     --font-weight-medium: 500;
@@ -91,72 +97,87 @@
     --font-weight-bold: 700;
     --font-weight-black: 900;
     
-    --line-height-tight: 1.2;
+    --line-height-tight: 1.15;
     --line-height-normal: 1.5;
     --line-height-relaxed: 1.75;
     
-    --letter-spacing-tight: -0.02em;
+    --letter-spacing-tight: -0.03em;
     --letter-spacing-normal: 0;
-    --letter-spacing-wide: 0.05em;
+    --letter-spacing-wide: 0.02em;
     
     /* ========================================
        BORDER RADIUS
        ======================================== */
     
     --radius-sm: 10px;
-    --radius-md: 16px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
-    --radius-2xl: 36px;
+    --radius-md: 14px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+    --radius-2xl: 32px;
+    --radius-3xl: 40px;
     --radius-full: 9999px;
     
     /* ========================================
-       SHADOWS & DEPTH
+       SHADOWS & DEPTH - PREMIUM
        ======================================== */
     
     /* Elevation Shadows */
-    --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.4);
-    --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.6);
-    --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.7);
-    --shadow-2xl: 0 30px 80px rgba(0, 0, 0, 0.8);
+    --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+    --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.7);
+    --shadow-2xl: 0 32px 64px rgba(0, 0, 0, 0.8);
     
     /* Neon Glow Shadows */
-    --shadow-glow-purple: 0 0 30px rgba(168, 85, 247, 0.5);
-    --shadow-glow-pink: 0 0 30px rgba(236, 72, 153, 0.5);
-    --shadow-glow-neon: 0 0 40px rgba(168, 85, 247, 0.6);
-    --shadow-glow-soft: 0 0 20px rgba(168, 85, 247, 0.3);
+    --shadow-glow-purple: 0 0 40px rgba(168, 85, 247, 0.6);
+    --shadow-glow-pink: 0 0 40px rgba(236, 72, 153, 0.5);
+    --shadow-glow-neon: 0 0 50px rgba(168, 85, 247, 0.7);
+    --shadow-glow-soft: 0 0 25px rgba(168, 85, 247, 0.35);
+    --shadow-glow-intense: 0 0 60px rgba(168, 85, 247, 0.8);
+    
+    /* Album Glow - Dynamic */
+    --shadow-album-glow: 
+        0 20px 60px rgba(168, 85, 247, 0.4),
+        0 0 80px rgba(168, 85, 247, 0.3);
     
     /* Multi-layer Depth */
     --shadow-depth: 
-        0 4px 6px rgba(0, 0, 0, 0.3),
-        0 12px 24px rgba(0, 0, 0, 0.4),
-        0 24px 48px rgba(0, 0, 0, 0.5);
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        0 8px 16px rgba(0, 0, 0, 0.4),
+        0 16px 32px rgba(0, 0, 0, 0.5);
     
-    /* Glass Shadow */
+    /* Glass Shadow with Highlight */
     --shadow-glass: 
         0 8px 32px rgba(0, 0, 0, 0.6),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+    
+    --shadow-glass-strong: 
+        0 12px 48px rgba(0, 0, 0, 0.7),
+        inset 0 2px 0 rgba(255, 255, 255, 0.20),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.30);
     
     /* Inner Shadows */
-    --shadow-inset: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-inset: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-inset-strong: inset 0 3px 12px rgba(0, 0, 0, 0.6);
     
     /* ========================================
        BLUR EFFECTS
        ======================================== */
     
-    --blur-sm: 12px;
-    --blur-md: 24px;
+    --blur-sm: 16px;
+    --blur-md: 28px;
     --blur-lg: 48px;
-    --blur-xl: 64px;
+    --blur-xl: 72px;
     
-    --backdrop-blur-sm: blur(12px);
-    --backdrop-blur-md: blur(24px);
+    --backdrop-blur-sm: blur(16px);
+    --backdrop-blur-md: blur(28px);
     --backdrop-blur-lg: blur(48px);
+    --backdrop-blur-xl: blur(72px);
     
     /* ========================================
-       TRANSITIONS
+       TRANSITIONS & TIMING
        ======================================== */
     
     --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
@@ -165,7 +186,9 @@
     --ease-in-out: cubic-bezier(0.4, 0, 0.6, 1);
     --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --ease-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
     
+    --duration-instant: 0.1s;
     --duration-fast: 0.2s;
     --duration-normal: 0.35s;
     --duration-slow: 0.5s;
@@ -182,26 +205,63 @@
     
     --z-background: -1;
     --z-base: 1;
-    --z-dropdown: 10;
-    --z-sticky: 100;
+    --z-elevated: 10;
+    --z-dropdown: 100;
+    --z-sticky: 500;
     --z-overlay: 1000;
-    --z-modal: 10000;
+    --z-modal: 5000;
     
     /* ========================================
        LAYOUT SIZES
        ======================================== */
     
     --max-width: 1600px;
-    --player-width: 520px;
-    --album-size: 360px;
-    --album-size-mobile: 220px;
-    --playlist-item-height: 80px;
+    --player-width: 560px;
+    --album-size: 400px;
+    --album-size-tablet: 320px;
+    --album-size-mobile: 240px;
+    
+    --playlist-item-height: 88px;
+    --control-btn-size: 58px;
+    --play-btn-size: 100px;
 }
+
+/* ========================================
+   MEDIA QUERY OVERRIDES
+   ======================================== */
+
+@media (max-width: 1200px) {
+    :root {
+        --album-size: 360px;
+        --play-btn-size: 92px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --album-size: var(--album-size-tablet);
+        --play-btn-size: 84px;
+        --control-btn-size: 52px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --album-size: var(--album-size-mobile);
+        --play-btn-size: 76px;
+        --control-btn-size: 48px;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY OVERRIDES
+   ======================================== */
 
 @media (prefers-contrast: high) {
     :root {
-        --glass-border: rgba(255, 255, 255, 0.3);
-        --color-text-secondary: #E5DEFF;
+        --glass-border: rgba(255, 255, 255, 0.35);
+        --color-text-secondary: #E8DEFF;
+        --color-border: rgba(255, 255, 255, 0.25);
     }
 }
 

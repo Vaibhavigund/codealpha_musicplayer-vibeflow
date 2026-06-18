@@ -1,47 +1,30 @@
 /* ================================
-   PREMIUM ANIMATIONS
+   PREMIUM UI POLISH - ANIMATIONS
    ================================ */
 
-/* ========== SUBTLE FLOATING EFFECT ========== */
+/* ========== SMOOTH TRANSITIONS ========== */
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-12px);
-    }
+* {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.album-cover-container {
-    animation: float 8s ease-in-out infinite;
-}
-
-.album-cover-container:hover {
-    animation-play-state: paused;
-}
-
-/* ========== PAGE ENTRANCE ========== */
+/* ========== ENTRANCE ANIMATIONS ========== */
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(30px) scale(0.95);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
     }
-}
-
-.music-player {
-    animation: fadeIn 0.8s var(--ease-smooth);
 }
 
 @keyframes fadeInDown {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-15px);
     }
     to {
         opacity: 1;
@@ -49,9 +32,17 @@
     }
 }
 
-/* ========== PLAYLIST STAGGERED ENTRANCE ========== */
+.music-player {
+    animation: fadeIn 0.6s ease-out;
+}
 
-@keyframes slideInRight {
+.brand-header {
+    animation: fadeInDown 0.8s ease-out;
+}
+
+/* ========== PLAYLIST CARDS ENTRANCE ========== */
+
+@keyframes slideIn {
     from {
         opacity: 0;
         transform: translateX(-30px);
@@ -63,116 +54,132 @@
 }
 
 .playlist-item {
-    animation: slideInRight 0.5s var(--ease-smooth);
+    animation: slideIn 0.5s ease-out;
     animation-fill-mode: both;
 }
 
-.playlist-item:nth-child(1) { animation-delay: 0.1s; }
-.playlist-item:nth-child(2) { animation-delay: 0.15s; }
-.playlist-item:nth-child(3) { animation-delay: 0.2s; }
-.playlist-item:nth-child(4) { animation-delay: 0.25s; }
-.playlist-item:nth-child(5) { animation-delay: 0.3s; }
-.playlist-item:nth-child(6) { animation-delay: 0.35s; }
-.playlist-item:nth-child(n+7) { animation-delay: 0.4s; }
+.playlist-item:nth-child(1) { animation-delay: 0.05s; }
+.playlist-item:nth-child(2) { animation-delay: 0.08s; }
+.playlist-item:nth-child(3) { animation-delay: 0.11s; }
+.playlist-item:nth-child(4) { animation-delay: 0.14s; }
+.playlist-item:nth-child(5) { animation-delay: 0.17s; }
+.playlist-item:nth-child(6) { animation-delay: 0.20s; }
+.playlist-item:nth-child(n+7) { animation-delay: 0.23s; }
 
-/* ========== PLAY BUTTON GLOW PULSE ========== */
+/* ========== ALBUM COVER PLAYING ANIMATION ========== */
 
-@keyframes glowPulse {
-    0%, 100% {
-        box-shadow: var(--shadow-lg), 0 0 30px var(--color-primary-glow);
-    }
-    50% {
-        box-shadow: var(--shadow-xl), 0 0 50px rgba(168, 85, 247, 0.8);
-    }
-}
-
-.play-btn.playing,
-.playing .play-btn {
-    animation: glowPulse 2.5s ease-in-out infinite;
-}
-
-/* ========== SHIMMER EFFECTS ========== */
-
-@keyframes shimmer {
-    0% {
-        background-position: -200% 0;
-    }
-    100% {
-        background-position: 200% 0;
-    }
-}
-
-/* ========== TEXT FADE TRANSITIONS ========== */
-
-.song-title,
-.song-artist {
-    transition: 
-        opacity var(--transition-normal) ease-in-out,
-        color var(--transition-normal),
-        transform var(--transition-normal);
-}
-
-/* ========== BUTTON INTERACTIONS ========== */
-
-@keyframes buttonPress {
+@keyframes albumPulse {
     0%, 100% {
         transform: scale(1);
     }
     50% {
-        transform: scale(0.92);
+        transform: scale(1.02);
     }
 }
 
-.control-btn:active {
-    animation: buttonPress 0.25s var(--ease-smooth);
+.playing .album-cover-container {
+    animation: albumPulse 3s ease-in-out infinite;
 }
 
-/* ========== PROGRESS TRANSITIONS ========== */
-
-.progress-filled,
-.volume-filled {
-    transition: width 0.1s linear;
+.playing .album-cover::before {
+    opacity: 0.9 !important;
+    animation: glowPulse 2.5s ease-in-out infinite;
 }
 
-.progress-handle,
-.volume-handle {
-    transition: transform var(--transition-normal) var(--ease-spring);
-}
-
-/* ========== HOVER LIFT EFFECT ========== */
-
-@keyframes hoverLift {
-    0% {
-        transform: translateY(0);
+@keyframes glowPulse {
+    0%, 100% {
+        filter: blur(50px);
+        opacity: 0.8;
     }
-    100% {
-        transform: translateY(-4px);
+    50% {
+        filter: blur(60px);
+        opacity: 1;
     }
 }
 
-/* ========== NEON PULSE ========== */
+/* ========== PLAY BUTTON ANIMATION ========== */
 
-@keyframes neonPulse {
+@keyframes playButtonGlow {
+    0%, 100% {
+        box-shadow: var(--shadow-lg), 0 0 30px rgba(168, 85, 247, 0.6);
+    }
+    50% {
+        box-shadow: var(--shadow-xl), 0 0 50px rgba(168, 85, 247, 0.9);
+    }
+}
+
+.playing .play-btn {
+    animation: playButtonGlow 2s ease-in-out infinite;
+}
+
+/* ========== ACTIVE SONG GLOW ========== */
+
+@keyframes activeGlow {
     0%, 100% {
         box-shadow: 
             var(--shadow-lg),
-            0 0 20px rgba(168, 85, 247, 0.4);
+            0 0 25px rgba(168, 85, 247, 0.5),
+            inset 0 0 25px rgba(168, 85, 247, 0.1);
     }
     50% {
         box-shadow: 
             var(--shadow-xl),
-            0 0 40px rgba(168, 85, 247, 0.7);
+            0 0 45px rgba(168, 85, 247, 0.7),
+            inset 0 0 35px rgba(168, 85, 247, 0.15);
     }
 }
 
 .playlist-item.active {
-    animation: neonPulse 3s ease-in-out infinite;
+    animation: activeGlow 3s ease-in-out infinite;
 }
 
-/* ========== SMOOTH TRANSITIONS ========== */
+/* ========== PROGRESS BAR SHIMMER ========== */
 
-* {
-    transition-timing-function: var(--ease-smooth);
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(200%);
+    }
+}
+
+.progress-filled::after {
+    animation: shimmer 2s linear infinite;
+}
+
+/* ========== ICON ANIMATIONS ========== */
+
+@keyframes iconPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 12px var(--color-primary-glow));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px var(--color-primary-glow));
+    }
+}
+
+.brand-icon {
+    animation: iconPulse 3s ease-in-out infinite;
+}
+
+/* ========== FLOATING ANIMATION ========== */
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.album-cover-container {
+    animation: float 6s ease-in-out infinite;
+}
+
+.album-cover-container:hover {
+    animation-play-state: paused;
 }
 
 /* ========== REDUCED MOTION ========== */
@@ -184,11 +191,5 @@
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
-    }
-    
-    .album-cover-container,
-    .play-btn,
-    .playlist-item {
-        animation: none !important;
     }
 }

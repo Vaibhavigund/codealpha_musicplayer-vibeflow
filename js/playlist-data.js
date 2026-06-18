@@ -55,46 +55,46 @@ const playlist = [
     },
     {
     title: "Kashish",
-    artist: "Mitraz",
+    artist: "Swapnil Bandodkar",
     cover: "assets/images/cover7.png",
     audio: "assets/music/song7.mp3",
     duration: "3:13"
-    },
-    {
-    title: "Ek Full",
-    artist: "B Praak",
+},
+{
+    title: "Ek Phool",
+    artist: "Priyanka Barve & Onkarswaroop",
     cover: "assets/images/cover8.png",
     audio: "assets/music/song8.mp3",
     duration: "5:48"
-    },
-    {
-    title: "Jeeo Rangla",
-    artist: "Harshdeep Kaur",
+},
+{
+    title: "Jeev Rangla",
+    artist: "Ajay Gogavale & Shreya Ghoshal",
     cover: "assets/images/cover9.png",
     audio: "assets/music/song9.mp3",
     duration: "4:44"
-    },
-    {
+},
+{
     title: "Kakan",
-    artist: "Neha Bhasin",
+    artist: "Shankar Mahadevan",
     cover: "assets/images/cover10.png",
     audio: "assets/music/song10.mp3",
     duration: "4:15"
-    },
-    {
-    title: "Bhaga",
-    artist: "Amar Jalal",
+},
+{
+    title: "Dhaga-Dhaga",
+    artist: "Harshavardhan Wavre & Aanandi Joshi",
     cover: "assets/images/cover11.png",
     audio: "assets/music/song11.mp3",
     duration: "3:03"
-    },
-    {
-    title: "Kewda Cha Paan",
-    artist: "Ajay-Atul",
+},
+{
+    title: "Kevdyach Paan Tu",
+    artist: "Arya Ambekar",
     cover: "assets/images/cover12.png",
     audio: "assets/music/song12.mp3",
     duration: "5:04"
-    }
+}
 ];
 
 // Export for use in other modules (if using ES6 modules)
