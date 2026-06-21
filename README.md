@@ -1,37 +1,35 @@
-# 🎵 VibeFlow Music Player
+# VibeFlow Music Player
 
-A modern and responsive Music Player built using HTML, CSS, and Vanilla JavaScript.
+VibeFlow is a browser-based music player built using HTML, CSS, and JavaScript. The application provides essential audio playback controls along with playlist management, search functionality, progress tracking, and volume control in a responsive user interface.
 
-## 🚀 Live Demo
+## Live Demo
 
-https://vaibhavigund.github.io/vibeflow-music-player/
+https://vaibhavigund.github.io/codealpha_musicplayer-vibeflow/
 
-## 📂 GitHub Repository
+## Repository
 
-https://github.com/Vaibhavigund/vibeflow-music-player
+https://github.com/Vaibhavigund/codealpha_musicplayer-vibeflow
+## Features
 
-## ✨ Features
+* Play and pause audio tracks
+* Next and previous song navigation
+* Interactive playlist
+* Search songs by title or artist
+* Progress bar with seeking support
+* Display of current playback time and total duration
+* Volume adjustment and mute functionality
+* Autoplay support
+* Responsive layout for desktop and mobile devices
 
-* ▶️ Play and Pause songs
-* ⏭️ Next and Previous track controls
-* 🎵 Interactive playlist
-* 🔍 Real-time song search
-* ⏱️ Song duration and current playback time
-* 📊 Progress bar with seeking functionality
-* 🔊 Volume control and mute/unmute
-* 🔄 Autoplay support
-* 📱 Fully responsive design
-* 🎨 Modern glassmorphism-inspired UI
-
-## 🛠️ Technologies Used
+## Technologies
 
 * HTML5
 * CSS3
 * JavaScript (ES6)
-* HTML Audio API
+* HTML Audio Element
 * Local Storage
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 vibeflow-music-player/
@@ -57,37 +55,25 @@ vibeflow-music-player/
     └── music/
 ```
 
-## 🎯 Project Objective
+## Running the Project
 
-This project was developed as part of a Frontend Development Internship Task.
-
-The goal was to create a fully functional music player using HTML, CSS, and JavaScript with:
-
-* Audio playback controls
-* Song information display
-* Progress tracking
-* Volume control
-* Playlist functionality
-* Responsive user interface
-
-## ▶️ How to Run
-
-1. Clone the repository:
+1. Clone the repository.
 
 ```bash
-git clone https://github.com/Vaibhavigund/vibeflow-music-player.git
+git clone https://github.com/Vaibhavigund/codealpha_musicplayer-vibeflow.git
 ```
 
 2. Open the project folder.
 
-3. Launch `index.html` in your browser.
+3. Launch `index.html` in a web browser.
 
-## 👩‍💻 Author
+No additional dependencies or installation steps are required.
 
-**Vaibhavi Gund**
+## Internship Task
 
-GitHub: https://github.com/Vaibhavigund
+This project was developed as part of a Frontend Development Internship assignment. The objective was to create a functional music player using HTML, CSS, and JavaScript with audio controls, playlist support, progress tracking, and responsive design.
 
-LinkedIn: Vaibhavi Gund
+## Author
 
-Email: [vaibhavi.gund0324@gmail.com](mailto:vaibhavi.gund0324@gmail.com)
+Vaibhavi Gund
+
