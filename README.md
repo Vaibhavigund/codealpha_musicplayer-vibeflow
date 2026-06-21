@@ -69,10 +69,6 @@ git clone https://github.com/Vaibhavigund/codealpha_musicplayer-vibeflow.git
 
 No additional dependencies or installation steps are required.
 
-## Internship Task
-
-This project was developed as part of a Frontend Development Internship assignment. The objective was to create a functional music player using HTML, CSS, and JavaScript with audio controls, playlist support, progress tracking, and responsive design.
-
 ## Author
 
 Vaibhavi Gund
